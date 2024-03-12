@@ -1,12 +1,11 @@
 "use server";
 
-import { currentRole } from "@/lib/auth";
-import { UserRole } from "@prisma/client";
+import { currentActiveRole } from "@/lib/auth";
 
 export const admin = async () => {
-  const role = await currentRole();
+  const activeRole = await currentActiveRole();
 
-  if (role === UserRole.ADMIN) {
+  if (activeRole === "Admin") {
     return { success: "Allowed Server Action!" };
   }
 
