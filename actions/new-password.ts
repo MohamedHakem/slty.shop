@@ -39,7 +39,7 @@ export const newPassword = async (
   const existingUser = await getUserByEmail(existingToken.email);
 
   if (!existingUser) {
-    return { error: "Email does not exist!" }
+    return { error: 'لا يوجد حساب مرتبط بهذا الايميل' };
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -53,5 +53,5 @@ export const newPassword = async (
     where: { id: existingToken.id }
   });
 
-  return { success: "Password updated!" };
+  return { success: "تم تحديث كلمة المرور!" };
 };

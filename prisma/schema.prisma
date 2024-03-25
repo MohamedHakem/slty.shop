@@ -39,15 +39,17 @@ model User {
   isWriter                        Boolean        @default(false)
   isQuizMaker                     Boolean        @default(false)
   isRecipeMaker                   Boolean        @default(false)
-  createdAt                       DateTime       @default(now()) @db.Timestamp(0)
-  updatedAt                       DateTime       @default(now()) @updatedAt @db.Timestamp(0)
   isTwoFactorEnabled              Boolean        @default(false)
   activeRole                      ActiveRole     @default(User)
   preffered_language              ActiveLanguage @default(AR)
 
   userRoles             UserRole[]
-  account               Account[]
+  Entity                Entity[]
+  account               Account?
   TwoFactorConfirmation TwoFactorConfirmation?
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
 }
 
 model Role {
@@ -74,7 +76,7 @@ model UserRole {
 
 model Account {
   id                String  @id @default(cuid())
-  userId            String
+  userId            String  @unique
   type              String
   provider          String
   providerAccountId String
@@ -128,7 +130,77 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-model notes {
-  id   Int    @id @default(autoincrement())
-  name String
+model Item {
+  id          Int    @id @default(autoincrement())
+  slug        String @unique
+  name        String
+  description String
+  price       Float
+  image       String
+
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model Category {
+  id                 Int    @id @default(autoincrement())
+  slug               String @unique
+  name               String
+  parent_category_id Int?
+
+  items Item[]
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+enum EntityType {
+  Profile
+  Shop
+  Company
+}
+
+model Entity {
+  id           Int        @id @default(autoincrement())
+  name         String
+  username     String
+  description  String?
+  type         EntityType @default(Profile)
+  image        String?
+  cover_image  String?
+  phone_number String?
+  email        String?
+  website      String?
+  facebook     String?
+  instagram    String?
+  twitter      String?
+  linkedin     String?
+  youtube      String?
+  snapchat     String?
+  tiktok       String?
+  whatsapp     String?
+  address      String?
+  city         String?
+  country      String
+  postal_code  String?
+  isVerified   Boolean    @default(false)
+  isPublished  Boolean    @default(false)
+  isDeleted    Boolean    @default(false)
+
+  owner_id String
+  owner    User   @relation(fields: [owner_id], references: [id])
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+enum OrderStatus {
+  Pending
+  Processing
+  Shipped
+  Delivered
+  Cancelled
 }

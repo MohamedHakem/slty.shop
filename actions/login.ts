@@ -25,7 +25,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: 'Email does not exist!' };
+    return { error: 'لا يوجد حساب مرتبط بهذا الايميل' };
   }
 
   // is user email verified?
@@ -34,7 +34,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
 
     await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
-    return { success: 'Confirmation email sent!' };
+    return { success: 'تم إرسال رابط تفعيل حسابك الي ايميلك!' };
   }
 
   // did user enable 2FA?
@@ -91,9 +91,9 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'Invalid credentials!' };
+          return { error: 'خطأ في كلمة المرور!' };
         default:
-          return { error: 'Something went wrong!' };
+          return { error: 'حدث خطأ ما، راسل الدعم!' };
       }
     }
 

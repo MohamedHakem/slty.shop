@@ -18,14 +18,15 @@ export const Social = () => {
   }
 
   return (
-    <div className="flex items-center w-full gap-x-2">
+    <div className="flex items-center w-full gap-x-2 py-2">
       <Button
-        size="lg"
-        className="w-full"
+        size="xl"
+        className="w-full flex flex-row gap-2 border-gray-300"
         variant="outline"
         onClick={() => onClick("google")}
       >
-        <FcGoogle className="h-5 w-5" />
+        <span className="font-light text-lg">Google المواصلة بإستخدام</span>
+        <FcGoogle className="h-auto w-8" size={32} />
       </Button>
     </div>
   );

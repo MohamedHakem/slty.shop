@@ -34,20 +34,20 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     const existingUser = await getUserByEmail(values.email);
 
     if (existingUser && existingUser.id !== user.id) {
-      return { error: 'Email already in use!' };
+      return { error: 'الايميل مرتبط بحساب أخر!' };
     }
 
     const verificationToken = await generateVerificationToken(values.email);
     await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
-    return { success: 'Verification email sent!' };
+    return { success: 'تم إرسال ايميل  برابط التحقق!' };
   }
 
   if (values.password && values.newPassword && dbUser.password) {
     const passwordsMatch = await bcrypt.compare(values.password, dbUser.password);
 
     if (!passwordsMatch) {
-      return { error: 'Incorrect password!' };
+      return { error: 'كلمة المرور غير صحيحة!' };
     }
 
     const hashedPassword = await bcrypt.hash(values.newPassword, 10);
@@ -57,5 +57,5 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
 
   await db.user.update({ where: { id: dbUser.id }, data: { ...values } });
 
-  return { success: 'Settings Updated!' };
+  return { success: 'تم التحديث!' };
 };

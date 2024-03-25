@@ -12,14 +12,15 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,  
+  // FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { CardWrapper } from "@/components/auth/card-wrapper"
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { register } from "@/actions/register";
+import { LoadingButton } from "../ui/loading-button";
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -28,17 +29,13 @@ export const RegisterForm = () => {
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      name: "",
-    },
+    defaultValues: { email: "", password: "" }
   });
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     setError("");
     setSuccess("");
-    
+
     startTransition(() => {
       register(values)
         .then((data) => {
@@ -50,47 +47,49 @@ export const RegisterForm = () => {
 
   return (
     <CardWrapper
-      headerLabel="Create an account"
-      backButtonLabel="Already have an account?"
-      backButtonHref="/auth/login"
+      headerLabel="حساب جديد"
+      backButtonLabel="لديك حساب بالفعل؟"
+      backButtonHref="/login"
       showSocial
+      showSeparator
+      className="lg:border-0"
     >
       <Form {...form}>
-        <form 
+        <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
+          dir={"rtl"}
         >
           <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="John Doe"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="john.doe@example.com"
-                      type="email"
-                    />
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        autoComplete="email"
+                        autoFocus
+                        type="email"
+                        placeholder="البريد الالكتروني"
+                        id="floating-input-email"
+                        className="peer h-[54px] p-4 block w-full placeholder:text-transparent disabled:opacity-50 disabled:pointer-events-none
+                            focus:pt-7 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:pt-6 autofill:pb-2">
+                      </Input>
+                      <label
+                        htmlFor="floating-input-email"
+                        className="absolute top-0 start-0 p-4 text-sm truncate pointer-events-none transition ease-in-out duration-100 
+                            peer-disabled:opacity-50 peer-disabled:pointer-events-none peer-focus:pt-[10px]
+                            peer-focus:text-xs peer-focus:-translate-y-1 peer-focus:text-gray-500 peer-[:not(:placeholder-shown)]:text-xs 
+                            peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:text-gray-400
+                            peer-[:not(:placeholder-shown)]:pt-[10px]"
+                      >
+                        البريد الالكتروني
+                      </label>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -100,15 +99,30 @@ export const RegisterForm = () => {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
+                <FormItem className="mt-2">
                   <FormControl>
-                    <Input
-                      {...field}
-                      disabled={isPending}
-                      placeholder="******"
-                      type="password"
-                    />
+                    <div className="relative">
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        autoComplete="current-password"
+                        type="password"
+                        placeholder="كلمة السر"
+                        id="floating-input-password"
+                        className="peer h-[54px] p-4 block w-full placeholder:text-transparent disabled:opacity-50 disabled:pointer-events-none
+                            focus:pt-7 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:pt-6 autofill:pb-2">
+                      </Input>
+                      <label
+                        htmlFor="floating-input-password"
+                        className="absolute top-0 start-0 p-4 text-sm truncate pointer-events-none transition ease-in-out duration-100 
+                            peer-disabled:opacity-50 peer-disabled:pointer-events-none peer-focus:pt-[10px]
+                            peer-focus:text-xs peer-focus:-translate-y-1 peer-focus:text-gray-500 peer-[:not(:placeholder-shown)]:text-xs 
+                            peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:text-gray-400
+                            peer-[:not(:placeholder-shown)]:pt-[10px]"
+                      >
+                        كلمة السر
+                      </label>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -117,13 +131,15 @@ export const RegisterForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button
+          <LoadingButton
+            size={"xxl"}
             disabled={isPending}
+            loading={isPending}
             type="submit"
-            className="w-full"
+            className="w-full text-lg"
           >
-            Create an account
-          </Button>
+            انشئ حسابك
+          </LoadingButton>
         </form>
       </Form>
     </CardWrapper>
