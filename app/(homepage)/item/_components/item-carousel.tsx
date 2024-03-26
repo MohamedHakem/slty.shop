@@ -14,7 +14,8 @@ export const ItemCarousel = ({ images }: { images: ItemCarouselType }) => {
   return (
     // <div className="w-full flex flex-col items-center h-[400px] max-w-[440px] relative">
     // <div className="w-full flex flex-col items-center h-[600px] max-w-[630px] relative">
-    <div className="flex flex-col items-center md:w-3/5 h-auto relative min-w-[300px] md:rounded-2xl">
+    // <div className="flex flex-col items-center md:w-3/5 h-auto relative min-w-[300px] md:rounded-2xl">
+    <div className="flex flex-col items-center h-auto relative">
       <Carousel
         // className="w-full flex items-center h-[400px] max-w-[440px]"
         // className="w-full flex items-center h-[600px] max-w-[630px]"

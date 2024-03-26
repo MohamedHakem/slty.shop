@@ -180,7 +180,7 @@ const CarouselContent = React.forwardRef<
         className={cn("flex",
           // orientation === "horizontal" ? "mx-2" : "-mt-4 flex-col",
           orientation === "horizontal" ? "" : "flex-col",
-          "after:bg-gradient-to-l from-transparent to-white after:w-12 after:h-full after:absolute after:left-0 after:bottom-0",
+          // "after:bg-gradient-to-l from-transparent to-white after:w-12 after:h-full after:absolute after:left-0 after:bottom-0",
           className
         )}
         {...props}
@@ -204,7 +204,9 @@ const CarouselItem = React.forwardRef<
       aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        // orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "" : "pt-4",
+        "active:scale-90 transition-all duration-75 ease-in-out",
         className
       )}
       {...props}
@@ -225,7 +227,8 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute  h-10 w-10 rounded-full",
+        "absolute  h-11 w-11 rounded-full",
+        "active:scale-90 transition-all duration-100 ease-in-out",
         orientation === "horizontal"
           // ? "-left-12 top-1/2 -translate-y-1/2"
           ? "right-[60px] -bottom-[11px] -translate-y-1/2"
@@ -255,7 +258,8 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-10 w-10 rounded-full",
+        "absolute h-11 w-11 rounded-full",
+        "active:scale-90 transition-all duration-100 ease-in-out",
         orientation === "horizontal"
           // ? "-right-12 top-1/2 -translate-y-1/2"
           ? "right-[11px] -bottom-[11px] -translate-y-1/2"
@@ -285,72 +289,72 @@ export {
 ////////
 
 
-import {
-  PropsWithChildren,
-  useCallback,
-  useEffect,
-  useState
-} from 'react'
-import { EmblaCarouselType } from 'embla-carousel'
+// import {
+//   PropsWithChildren,
+//   useCallback,
+//   useEffect,
+//   useState
+// } from 'react'
+// import { EmblaCarouselType } from 'embla-carousel'
 
-type UseDotButtonType = {
-  selectedIndex: number
-  scrollSnaps: number[]
-  onDotButtonClick: (index: number) => void
-}
+// type UseDotButtonType = {
+//   selectedIndex: number
+//   scrollSnaps: number[]
+//   onDotButtonClick: (index: number) => void
+// }
 
-export const useDotButton = (
-  emblaApi: EmblaCarouselType
-): UseDotButtonType => {
-  const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+// export const useDotButton = (
+//   emblaApi: EmblaCarouselType
+// ): UseDotButtonType => {
+//   const [selectedIndex, setSelectedIndex] = useState(0)
+//   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-  const onDotButtonClick = useCallback(
-    (index: number) => {
-      if (!emblaApi) return
-      emblaApi.scrollTo(index)
-    },
-    [emblaApi]
-  )
+//   const onDotButtonClick = useCallback(
+//     (index: number) => {
+//       if (!emblaApi) return
+//       emblaApi.scrollTo(index)
+//     },
+//     [emblaApi]
+//   )
 
-  const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-    setScrollSnaps(emblaApi.scrollSnapList())
-  }, [])
+//   const onInit = useCallback((emblaApi: EmblaCarouselType) => {
+//     setScrollSnaps(emblaApi.scrollSnapList())
+//   }, [])
 
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [])
+//   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+//     setSelectedIndex(emblaApi.selectedScrollSnap())
+//   }, [])
 
-  useEffect(() => {
-    if (!emblaApi) return
+//   useEffect(() => {
+//     if (!emblaApi) return
 
-    onInit(emblaApi)
-    onSelect(emblaApi)
-    emblaApi.on('reInit', onInit)
-    emblaApi.on('reInit', onSelect)
-    emblaApi.on('select', onSelect)
-  }, [emblaApi, onInit, onSelect])
+//     onInit(emblaApi)
+//     onSelect(emblaApi)
+//     emblaApi.on('reInit', onInit)
+//     emblaApi.on('reInit', onSelect)
+//     emblaApi.on('select', onSelect)
+//   }, [emblaApi, onInit, onSelect])
 
-  return {
-    selectedIndex,
-    scrollSnaps,
-    onDotButtonClick
-  }
-}
+//   return {
+//     selectedIndex,
+//     scrollSnaps,
+//     onDotButtonClick
+//   }
+// }
 
-type PropType = PropsWithChildren<
-  React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  >
->
+// type PropType = PropsWithChildren<
+//   React.DetailedHTMLProps<
+//     React.ButtonHTMLAttributes<HTMLButtonElement>,
+//     HTMLButtonElement
+//   >
+// >
 
-export const DotButton: React.FC<PropType> = (props) => {
-  const { children, ...restProps } = props
+// export const DotButton: React.FC<PropType> = (props) => {
+//   const { children, ...restProps } = props
 
-  return (
-    <button type="button" {...restProps}>
-      {children}
-    </button>
-  )
-}
+//   return (
+//     <button type="button" {...restProps}>
+//       {children}
+//     </button>
+//   )
+// }

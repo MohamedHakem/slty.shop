@@ -1,5 +1,5 @@
 import { BottomNav } from "@/components/navigation/bottom-nav";
-// import { CategoriesNav } from "@/components/navigation/categories-nav";
+import { Footer } from "@/components/navigation/footer";
 import { Nav } from "@/components/navigation/nav";
 
 const HomeLayout = ({ children }: { children: React.ReactNode }) => {
@@ -8,6 +8,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       <Nav />
       {children}
       <BottomNav />
+      <Footer />
     </main>
   );
 }

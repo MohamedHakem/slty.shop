@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { RiArrowLeftLine } from "react-icons/ri";
+import { ChevronLeft } from "lucide-react"
 
 export const CategorySection = ({ name, size, cardBg }:
   {
@@ -35,18 +35,21 @@ export const CategorySection = ({ name, size, cardBg }:
 
   return (
     <div className="relative flex flex-col gap-3 justify-center bg-white py-8 w-full max-w-[1100px]">
-      <div className="flex flex-row justify-between">
-        <Link href={`/category/${name}`}>
-          <p className={cn("text-primary", "hover:text-primaryDark")}>عرض الكل</p>
+      <div className="flex flex-row justify-between pl-2 md:pl-0">
+        <Link href={`/category/${name}`} className="flex text-primary items-center">
+          <ChevronLeft size={20} />
+          <p className="hover:text-primaryDark">عرض الكل</p>
         </Link>
-        <h2 className="text-2xl font-bold">{name}</h2>
+        <h2 className="text-2xl font-bold">
+          <Link href={`/category/${name}`}>{name}</Link>
+        </h2>
       </div>
       <Carousel opts={{ align: 'start', loop: true, containScroll: "trimSnaps", direction: "rtl" }}
         className="w-full max-w-6xl">
-        <CarouselContent className="-ml-4" dir="rtl">
+        <CarouselContent className="-ml-4 gap-3" dir="rtl">
           {products.map((c, i) => (
-            <Link href={`/item/${i + 1}`} key={i}>
-              <CarouselItem className="basis-auto pl-4">
+            <Link key={i} href={`/item/${i + 1}`}>
+              <CarouselItem className="basis-auto">
                 <div className={`flex flex-col items-center justify-center text-center rounded-xl bg-[${cardBg ? cardBg : "#EFEFF2"}]`}
                   style={{ width: `${size || 200}px`, height: `${size || 200}px` }}>
                   <p className="text-sm">{i + 1}</p>

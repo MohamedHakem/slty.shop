@@ -131,30 +131,80 @@ model TwoFactorConfirmation {
 }
 
 model Item {
-  id          Int    @id @default(autoincrement())
-  slug        String @unique
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
   name        String
   description String
   price       Float
   image       String
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  Attribute Attribute[]
 
   category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
-
-  createdAt DateTime @default(now()) @db.Timestamp(0)
-  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
 }
 
 model Category {
-  id                 Int    @id @default(autoincrement())
-  slug               String @unique
+  id                 Int      @id @default(autoincrement())
+  slug               String   @unique
   name               String
   parent_category_id Int?
+  createdAt          DateTime @default(now()) @db.Timestamp(0)
+  updatedAt          DateTime @default(now()) @updatedAt @db.Timestamp(0)
 
   items Item[]
 
+  Template Template?
+}
+
+model Template {
+  id        Int      @id @default(autoincrement())
+  name      String
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  fields Field[]
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int      @unique
+}
+
+model Field {
+  id         Int       @id @default(autoincrement())
+  name       String
+  isRequired Boolean   @default(false)
+  type       FieldType
+  createdAt  DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt  DateTime  @default(now()) @updatedAt @db.Timestamp(0)
+
+  attributes Attribute[]
+
+  template   Template @relation(fields: [templateId], references: [id])
+  templateId Int
+}
+
+enum FieldType {
+  Text
+  Number
+  Date
+}
+
+model Attribute {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value String
+
+  field   Field @relation(fields: [fieldId], references: [id])
+  fieldId Int
+  item    Item  @relation(fields: [itemId], references: [id])
+  itemId  Int
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  @@unique([fieldId, itemId])
 }
 
 enum EntityType {

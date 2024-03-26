@@ -1,10 +1,10 @@
 import { CategoriesNav } from "@/components/navigation/categories-nav";
 // import { ClaimShopName } from "@/components/claim-shopname";
-import { CategorySection } from "./_components/category";
+import { CategorySection } from "./_components/category-section";
 
 export default async function Home() {
   return (
-    <div className="flex flex-col items-center px-3 md:px-4">
+    <div className="flex flex-col items-center pr-4 md:px-4">
       <CategoriesNav />
       {/* <ClaimShopName /> */}
       <CategorySection name={"أحذية"} />
