@@ -1,6 +1,6 @@
 import { CategoriesNav } from "@/components/navigation/categories-nav";
 
-export default function AboutPage(props) {
+export default function AboutPage() {
   return (
     <div dir="rtl" className="flex flex-col items-center pr-4 md:px-4">
       <CategoriesNav />
