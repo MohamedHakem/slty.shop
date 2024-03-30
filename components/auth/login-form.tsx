@@ -104,27 +104,6 @@ export const LoginForm = () => {
             )}
             {!showTwoFactor && (
               <>
-                {/* <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          className="h-[52px] border-gray-300"
-                          disabled={isPending}
-                          placeholder="البريد الالكتروني"
-                          type="email"
-                          autoComplete="email"
-                          autoFocus
-                          onFocus={() => setError("")}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                 <FormField
                   control={form.control}
                   name="email"
@@ -165,15 +144,6 @@ export const LoginForm = () => {
                   render={({ field }) => (
                     <FormItem className="mt-2">
                       <FormControl>
-                        {/* <Input
-                          {...field}
-                          className="h-[52px] border-gray-300"
-                          disabled={isPending}
-                          placeholder="كلمة السر"
-                          type="password"
-                          autoComplete="current-password"
-                          onFocus={() => setError("")}
-                        /> */}
                         <div className="relative">
                           <Input
                             {...field}

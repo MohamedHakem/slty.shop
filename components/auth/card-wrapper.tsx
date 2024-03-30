@@ -26,9 +26,9 @@ interface CardWrapperProps {
 
 export const CardWrapper = ({
   children,
-  showHeader,
+  showHeader = true,
   headerLabel,
-  showBackButton,
+  showBackButton = true,
   backButtonLabel,
   backButtonHref,
   showSocial,

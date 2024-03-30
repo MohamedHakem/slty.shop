@@ -62,22 +62,6 @@ export const EntityForm = ({ entityType, handleContinue, handleBack }: { entityT
           // go to next step in the parent or redirect to /congrats page/component, and within it redirect to /dashboard
         }
       }).catch(() => setError("حدث خطأ، حاول مرة أخري"));
-
-      // login(values, callbackUrl)
-      //   .then((data) => {
-      //     if (data?.error) {
-      //       form.reset();
-      //       setError(data.error);
-      //     }
-      //     if (data?.success) {
-      //       form.reset();
-      //       setSuccess(data.success);
-      //     }
-      //   })
-      //   .catch(() => setError("Something went wrong"));
-
-      // go to next step in the parent component (multi-step wiz), put this inside the .then above
-      // handleContinue()
     });
   };
 

@@ -51,3 +51,26 @@ export const createEntity = async (values: z.infer<typeof EntityFormSchema>, use
     return { error: 'حدث خطأ اثناء انشاء حساب شركتك' };
   }
 };
+
+export const getEntityByUserIdAction = async (userId: string) => {
+  console.log("🚀 ~ getEntityByUserIdAction ~ userId:", userId)
+
+  if (!userId) {
+    return { error: 'userId is required!' };
+  }
+
+  const existingUser = await getUserById(userId);
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return { error: 'لا يوجد حساب مرتبط بهذا الايميل' };
+  }
+
+
+
+  try {
+    const existingEntity = await getEntityByUserId(userId);
+    return { entity: existingEntity };
+  } catch (error) {
+    console.log("[createEntity] error: ", error)
+    return { error: 'حدث خطأ اثناء انشاء حساب شركتك' };
+  }
+};

@@ -10,35 +10,14 @@ import { EntityForm } from "./entity-form";
 import { EntityType } from "@prisma/client";
 import Link from "next/link";
 
-// Usage
 export default function MultiStep() {
   let [step, setStep] = useState(0);
-  // let [entityType, setEntityType] = useState<EntityType | "">("")
   let [entityType, setEntityType] = useState<EntityType | undefined>(undefined)
-  console.log("🚀 ~ before ~ entityType:", entityType)
-  // pass the entityType to the next step's form, so we can use it to show different fields based on the user's choice, or just decide which form to show
 
-  // check if it's already saved, if so, use it, if not, continue to step 1 as usual, but then save entityType in localStorage, in case user left between step 1 & 2
-
-  // setStep(2) // let them go back to the step they left off at
-
-  // useEffect(() => {
-  //   // if (entityType === "" && typeof window !== "undefined") {
-  //   if (typeof window !== "undefined") {
-  //     console.log("useEffect ~ before ~ entityType: ", entityType);
-  //     const savedEntityType: EntityType | null = localStorage.getItem("entityType") as EntityType | null;
-  //     console.log("useEffect ~ after ~ savedEntityType: ", savedEntityType);
-  //     if (savedEntityType !== null) setEntityType(savedEntityType);
-  //   }
-  // }, [entityType]);
-
-  // use useEffect or something to go to the step saved in localStorage
   useEffect(() => {
     if (typeof window !== "undefined" && step === 0) {
       const savedStep = localStorage.getItem("currentStep")
       const savedEntityType = localStorage.getItem("entityType")
-      console.log("🚀 ~ useEffect ~ savedStep:", savedStep)
-      console.log("🚀 ~ useEffect ~ savedEntityType:", savedEntityType)
       if (entityType === undefined && savedEntityType) {
         setEntityType(savedEntityType as EntityType)
       }
@@ -48,47 +27,26 @@ export default function MultiStep() {
         setStep(1)
       )
     }
-  }, [entityType, step])
+  }, [step, entityType])
 
-  // if user is coming from an interrupted session, and they're already in step 2, then we need to show the form with the user's info prefilled, and the entityType saved in localStorage should be used to show the correct form
 
   // use localStorage to track the last active step for the user, so we can show them the correct step when they come back, and also to prefill the form with the user's info
-  // do it below, copilot
-
   // check user's Entity to see what info is missing, and show the step accordingly, and prefill the form with the user's info
 
   const handleBack = () => setStep(step < 2 ? step : step - 1)
 
   const handleContinue = () => {
-    console.log("🚀 ~ MultiStep ~ handleContinue ~ chosen entityType is: ", entityType)
-
     // save entityType in localStorage
     if (typeof window !== "undefined" && entityType) {
       localStorage.setItem("entityType", entityType)
       localStorage.setItem("currentStep", (step + 1).toString())
     }
-
-    // setStep(step > 4 ? step : step + 1)
     setStep(step + 1)
   }
 
-  const handleValueChange = (value: EntityType) => {
-    console.log("~ MultiStep ~ handleValueChange ~ value: ", value)
-    setEntityType(value)
-  }
-
-  console.log("🚀 ~ body render ~ entityType:", entityType)
-  console.log("🚀 ~ body render ~ step: ", step)
-
+  const handleValueChange = (value: EntityType) => setEntityType(value)
 
   // put if onboarding is complete or not in the localStorage, and check it here, if it's complete, redirect to dashboard, if not, continue with onboarding
-  // if (typeof window !== "undefined") {
-  //   const onboardingComplete = localStorage.getItem("onboardingComplete")
-  //   if (onboardingComplete) {
-  //     // redirect to dashboard
-  //   }
-  // }
-
 
   return (
     // <div className="flex min-h-full flex-1 flex-col items-center justify-center p-4 backdrop-blur-xl sm:aspect-[4/3] md:aspect-[2/1]">
@@ -170,14 +128,6 @@ export default function MultiStep() {
             </div>
           </div>
         )}
-
-        {/* {step > 1 && (
-          <div className="space-y-2 px-8">
-            <div className="h-4 w-5/6 rounded bg-neutral-100" />
-            <div className="h-4 rounded bg-neutral-100" />
-            <div className="h-4 w-4/6 rounded bg-neutral-100" />
-          </div>
-        )} */}
 
         {/* remove the below when you refactor all steps into their own components/forms  */}
         {step === 1 && (
