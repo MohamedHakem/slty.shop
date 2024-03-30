@@ -73,4 +73,7 @@ body,
   body {
     @apply bg-background text-foreground;
   }
+  .shimmer {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-l before:from-transparent before:via-white/90 before:to-transparent
+  }
 }

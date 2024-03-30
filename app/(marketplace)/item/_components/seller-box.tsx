@@ -7,9 +7,12 @@ import { FaPhone } from "react-icons/fa";
 import { IoCopyOutline } from "react-icons/io5";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { toast } from "sonner"
-import { FaCheckCircle } from "react-icons/fa";
+// import { FaCheckCircle } from "react-icons/fa";
 
 export const SellerBox = ({ seller }: { seller: { name: string, username: string, phone: string } }) => {
+  // const data = await slowFetch(2)
+  // console.log("🚀 ~ SellerBox ~ data.name:", data.name)
+
   const [showPhone, setShowPhone] = useState(false);
 
   const handleShowPhone = async () => {
@@ -36,20 +39,6 @@ export const SellerBox = ({ seller }: { seller: { name: string, username: string
 
   const copyToClipboard = async () => {
     await navigator.clipboard.writeText(seller.phone);
-    // toast(" تم نسخ رقم الهاتف إلى الحافظة", {
-    //   icon: <FaCheckCircle size={24} />,
-    //   duration: 25000,
-    //   style: {
-    //     backgroundColor: "#4caf50",
-    //     color: "#ffffff",
-    //     direction: "rtl",
-    //     fontSize: "1rem",
-    //     width: "80%",
-    //     right: "0%",
-    //     gap: "16px",
-    //   },
-    // });
-
     const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Sonner' }), 1000));
 
     toast.promise(promise, {
@@ -94,3 +83,19 @@ export const SellerBox = ({ seller }: { seller: { name: string, username: string
     </div >
   )
 }
+
+// export const SellerBoxSkeleton = () => {
+//   return (
+//     <div className="flex flex-col gap-2 max-h-[99px] p-3 md:p-4 border rounded-xl">
+//       <div className="flex items-center gap-4">
+//         <div className="animate-pulse w-20 h-20 bg-gray-300 rounded-xl border shimmer"></div>
+//         <div className="flex flex-col">
+//           <div className="animate-pulse h-7 w-1/2 bg-gray-300 rounded mb-4 shimmer"></div>
+//           <div className="animate-pulse h-7 w-1/2 bg-gray-300 rounded mb-4 shimmer"></div>
+//         </div>
+//       </div>
+      
+//       <div className="animate-pulse w-full h-12 bg-gray-300 rounded-xl border shimmer"></div>
+//     </div>
+//   );
+// };

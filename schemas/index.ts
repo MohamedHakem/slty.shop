@@ -76,3 +76,12 @@ export const RegisterSchema = z.object({
     message: "6 احرف على الاقل مطلوبة",
   }),
 });
+
+export const EntityFormSchema = z.object({
+  name: z.string().optional(),
+  desc: z.string().optional(),
+  image: z.string().optional(),
+  phone: z.string().min(6, {
+    message: "رقم الهاتف ضروري لأنه سيظهر للمشتري",
+  }),
+});

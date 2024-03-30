@@ -164,28 +164,36 @@ const Carousel = React.forwardRef<
 )
 Carousel.displayName = "Carousel"
 
+// add another prop called withAfter to the CarouselContent component
+// to add a gradient background to the carousel content
+// const CarouselContent = React.forwardRef<
+//   HTMLDivElement,
+//   React.HTMLAttributes<HTMLDivElement> & { withAfter?: boolean }
 const CarouselContent = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
+  React.HTMLAttributes<HTMLDivElement> & { withAfter?: boolean, withBefore?: boolean, beforeWidth?: string }
+>(({ className, withAfter = true, withBefore = false, beforeWidth = 4, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel()
 
   return (
     // <div ref={carouselRef} className="-mt-[100px] overflow-hidden block">
-    <div ref={carouselRef} className="overflow-hidden block">
-      {/* <div className="after:bg-gradient-to-l from-transparent to-white after:w-12 after:h-full after:absolute after:left-0 after:bottom-0"></div> */}
-      {/* {process.env.SITE_DIR === "rtl" &&  */}
-      {/* <div className=""></div> */}
+    <div ref={carouselRef}
+      className={`overflow-hidden block
+    ${withAfter ?
+          "after:bg-gradient-to-l from-transparent to-white after:w-12 after:h-full after:absolute after:left-0 after:bottom-0"
+          : ""}
+      `}>
       <div ref={ref}
         className={cn("flex",
           // orientation === "horizontal" ? "mx-2" : "-mt-4 flex-col",
           orientation === "horizontal" ? "" : "flex-col",
-          // "after:bg-gradient-to-l from-transparent to-white after:w-12 after:h-full after:absolute after:left-0 after:bottom-0",
           className
         )}
         {...props}
       />
       {/* {process.env.SITE_DIR === "ltr" && <div className="before:w-12 before:h-full before:absolute before:-right-2 before:bottom-0 before:bg-gradient-to-r from-transparent to-white"></div>} */}
+      {/* {withBefore && <div className={`before:w-6 before:h-full before:absolute before:right-0 before:bottom-0 before:bg-gradient-to-r from-transparent to-[#dedede]`}></div>} */}
+      {withBefore && <div className={`before:w-3 before:h-full before:absolute before:right-0 before:bottom-0 before:bg-gradient-to-r from-transparent to-white`}></div>}
     </div>
   )
 })
@@ -227,11 +235,12 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute  h-11 w-11 rounded-full",
+        "absolute  h-12 w-12 rounded-full",
         "active:scale-90 transition-all duration-100 ease-in-out",
         orientation === "horizontal"
           // ? "-left-12 top-1/2 -translate-y-1/2"
-          ? "right-[60px] -bottom-[11px] -translate-y-1/2"
+          // ? "right-[60px] -bottom-[11px] -translate-y-1/2"
+          ? "-right-4 -bottom-[11px] -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -239,7 +248,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="h-6 w-6" />
+      <ArrowRight className="h-6 w-6" />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -258,11 +267,12 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-11 w-11 rounded-full",
+        "absolute h-12 w-12 rounded-full",
         "active:scale-90 transition-all duration-100 ease-in-out",
         orientation === "horizontal"
           // ? "-right-12 top-1/2 -translate-y-1/2"
-          ? "right-[11px] -bottom-[11px] -translate-y-1/2"
+          // ? "right-[11px] -bottom-[11px] -translate-y-1/2"
+          ? "-left-4 -bottom-[11px] -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -270,7 +280,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="h-6 w-6" />
+      <ArrowLeft className="h-6 w-6" />
       <span className="sr-only">Next slide</span>
     </Button>
   )
@@ -285,76 +295,3 @@ export {
   CarouselPrevious,
   CarouselNext,
 }
-
-////////
-
-
-// import {
-//   PropsWithChildren,
-//   useCallback,
-//   useEffect,
-//   useState
-// } from 'react'
-// import { EmblaCarouselType } from 'embla-carousel'
-
-// type UseDotButtonType = {
-//   selectedIndex: number
-//   scrollSnaps: number[]
-//   onDotButtonClick: (index: number) => void
-// }
-
-// export const useDotButton = (
-//   emblaApi: EmblaCarouselType
-// ): UseDotButtonType => {
-//   const [selectedIndex, setSelectedIndex] = useState(0)
-//   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
-
-//   const onDotButtonClick = useCallback(
-//     (index: number) => {
-//       if (!emblaApi) return
-//       emblaApi.scrollTo(index)
-//     },
-//     [emblaApi]
-//   )
-
-//   const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-//     setScrollSnaps(emblaApi.scrollSnapList())
-//   }, [])
-
-//   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-//     setSelectedIndex(emblaApi.selectedScrollSnap())
-//   }, [])
-
-//   useEffect(() => {
-//     if (!emblaApi) return
-
-//     onInit(emblaApi)
-//     onSelect(emblaApi)
-//     emblaApi.on('reInit', onInit)
-//     emblaApi.on('reInit', onSelect)
-//     emblaApi.on('select', onSelect)
-//   }, [emblaApi, onInit, onSelect])
-
-//   return {
-//     selectedIndex,
-//     scrollSnaps,
-//     onDotButtonClick
-//   }
-// }
-
-// type PropType = PropsWithChildren<
-//   React.DetailedHTMLProps<
-//     React.ButtonHTMLAttributes<HTMLButtonElement>,
-//     HTMLButtonElement
-//   >
-// >
-
-// export const DotButton: React.FC<PropType> = (props) => {
-//   const { children, ...restProps } = props
-
-//   return (
-//     <button type="button" {...restProps}>
-//       {children}
-//     </button>
-//   )
-// }

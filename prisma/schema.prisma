@@ -208,17 +208,17 @@ model Attribute {
 }
 
 enum EntityType {
-  Profile
-  Shop
-  Company
+  PROFILE
+  SHOP
+  COMPANY
 }
 
 model Entity {
   id           Int        @id @default(autoincrement())
-  name         String
-  username     String
+  name         String?
+  username     String?
   description  String?
-  type         EntityType @default(Profile)
+  type         EntityType @default(PROFILE)
   image        String?
   cover_image  String?
   phone_number String?
@@ -234,7 +234,7 @@ model Entity {
   whatsapp     String?
   address      String?
   city         String?
-  country      String
+  country      String?
   postal_code  String?
   isVerified   Boolean    @default(false)
   isPublished  Boolean    @default(false)

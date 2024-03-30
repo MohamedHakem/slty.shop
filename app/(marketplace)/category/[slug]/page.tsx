@@ -1,10 +1,7 @@
-import { CategoriesNav } from "@/components/navigation/categories-nav";
-import { CategorySection } from "../../_components/category-section";
 import Link from "next/link";
 import Image from "next/image";
 
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
-  // console.log("🚀 ~ CategoryPage ~ params: ", params)
   const categoryName = decodeURIComponent(params.slug);
   const products = [
     { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
@@ -20,7 +17,6 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
   return (
     <div>
-      <CategoriesNav />
       <div dir="rtl" className="flex flex-col items-center my-4 px-8">
         <h1 className="text-4xl font-medium mt-8 mb-4 w-full">{categoryName}</h1>
 

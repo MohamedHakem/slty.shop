@@ -14,9 +14,11 @@ import { cn } from "@/lib/utils";
 
 interface CardWrapperProps {
   children: React.ReactNode;
-  headerLabel: string;
-  backButtonLabel: string;
-  backButtonHref: string;
+  showHeader?: boolean;
+  headerLabel?: string;
+  backButtonLabel?: string;
+  backButtonHref?: string;
+  showBackButton?: boolean;
   showSocial?: boolean;
   showSeparator?: boolean;
   className?: string;
@@ -24,7 +26,9 @@ interface CardWrapperProps {
 
 export const CardWrapper = ({
   children,
+  showHeader,
   headerLabel,
+  showBackButton,
   backButtonLabel,
   backButtonHref,
   showSocial,
@@ -34,22 +38,22 @@ export const CardWrapper = ({
   return (
     <Card
       className={cn("flex flex-col justify-center max-w-[380px] w-full mx-auto rounded-lg border-0 shadow-none lg:border lg:border-gray-300", className)}>
-      <CardHeader>
+      {showHeader && headerLabel && <CardHeader>
         <Header label={headerLabel} />
-      </CardHeader>
+      </CardHeader>}
       <CardContent className="pb-0">
-      {showSocial && (<Social />)}
-      {showSeparator && (<LoginSeparator />)}
+        {showSocial && (<Social />)}
+        {showSeparator && (<LoginSeparator />)}
         <div className="py-2">
           {children}
         </div>
       </CardContent>
-      <CardFooter className="">
+      {showBackButton && backButtonLabel && backButtonHref && <CardFooter className="">
         <BackButton
           label={backButtonLabel}
           href={backButtonHref}
         />
-      </CardFooter>
+      </CardFooter>}
     </Card>
   );
 };

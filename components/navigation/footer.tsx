@@ -8,7 +8,7 @@ export const Footer = () => {
   const isItem = pathname.includes("/item/")
 
   return (
-    <div dir="rtl" className={`w-full border-t border-primaryBorder p-4 md:mb-10 m-auto mb-${isItem ? "40" : "20"}`}>
+    <div dir="rtl" className={`w-full border-t border-primaryBorder p-4 mb-${isItem ? "40" : "20"} md:mb-10`}>
       <div className="flex justify-center items-center gap-4">
         <Link href="/about">عنا</Link>
         {" - "}

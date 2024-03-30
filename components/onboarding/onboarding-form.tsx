@@ -23,9 +23,9 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/auth/login";
 import { LoadingButton } from "../ui/loading-button";
-import { Label } from "../ui/label";
+// import { Label } from "../ui/label";
 
-export const LoginForm = () => {
+export const OnboardingForm = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError = searchParams.get("error") === "OAuthAccountNotLinked"

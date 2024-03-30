@@ -1,10 +1,15 @@
 import { CategoriesNav } from "@/components/navigation/categories-nav";
 // import { ClaimShopName } from "@/components/claim-shopname";
-import { CategorySection } from "./_components/category-section";
+import { CategorySection } from "../(marketplace)/_components/category-section";
+import { currentUser } from "@/lib/auth";
 
 export default async function Home() {
+  // console.time("🚀 ~ Home ~ server ~ user")
+  // const user = await currentUser()
+  // console.timeEnd("🚀 ~ Home ~ server ~ user")
+  
   return (
-    <div className="flex flex-col items-center pr-4 md:px-4">
+    <div className="flex flex-col items-center md:px-4">
       <CategoriesNav />
       {/* <ClaimShopName /> */}
       <CategorySection name={"أحذية"} />

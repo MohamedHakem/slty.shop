@@ -1,9 +1,14 @@
+"use client"
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel"
 import Link from "next/link"
+import AutoScroll from "embla-carousel-auto-scroll"
 
 export const CategoriesNav = () => {
   const categories = [
@@ -38,20 +43,48 @@ export const CategoriesNav = () => {
 
   return (
     <div className="w-full m-auto">
-      <div className="relative flex justify-center bg-white py-3 md:py-5 w-full max-w-[1100px] m-auto">
-        <Carousel opts={{ align: 'start', loop: true, containScroll: "trimSnaps", direction: "rtl" }}
-          className="w-full max-w-6xl">
-          <CarouselContent dir={"rtl"} className="-ml-4 gap-3">
-            {categories.map((c, i) => (
+      <div className="relative flex justify-center bg-white py-2 md:mb-0 md:py-2 w-full max-w-[1100px] m-auto">
+        <Carousel
+          opts={{
+            align: 'start',
+            loop: true,
+            containScroll: "trimSnaps",
+            direction: "rtl"
+          }}
+          plugins={[
+            AutoScroll({
+              speed: 1,
+              stopOnMouseEnter: true,
+            }),
+          ]}
+          className="w-full max-w-6xl"
+          dir={"rtl"}
+        >
+          <CarouselContent className="md:-ml-4 gap-3" dir="rtl" withBefore>
+            {categories.slice(0, -1).map((c, i) => (
               <Link href={`/category/${i + 1}`} key={i}>
                 <CarouselItem className="basis-auto">
-                  <div className="flex flex-col items-center justify-center text-center rounded-xl w-[72px] h-[72px] md:w-28 md:h-28 bg-[#EFEFF2]">
+                  <div className="flex flex-col items-center justify-center text-center 
+                  rounded-xl w-[72px] h-[72px] md:w-28 md:h-28 bg-[#EFEFF2]">
                     <p className="text-sm">{i + 1}</p>
                   </div>
                 </CarouselItem>
               </Link>
             ))}
+
+            <Link href={`/category/${categories.at(-1)?.name ?? "last"}`}>
+              <CarouselItem className="basis-auto pl-3">
+                <div className="flex flex-col items-center justify-center text-center 
+                  rounded-xl w-[72px] h-[72px] md:w-28 md:h-28 bg-[#EFEFF2] mx-">
+                  <p className="text-sm">
+                    {categories.at(-1)?.name || "last"}
+                  </p>
+                </div>
+              </CarouselItem>
+            </Link>
           </CarouselContent>
+          <CarouselPrevious className="shadow-md top-1/2 right-1 md:-right-4 w-10 h-10" />
+          <CarouselNext className="shadow-md top-1/2 left-1 md:-left-4 w-10 h-10" />
         </Carousel>
       </div>
     </div>

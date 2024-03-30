@@ -16,9 +16,16 @@ import {
 } from "@/components/ui/avatar";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { LogoutButton } from "@/components/auth/logout-button";
+import Link from "next/link";
 
 export const UserButton = () => {
+  console.time("🚀 ~ UserButton ~ client ~ useCurrentUser")
   const user = useCurrentUser();
+  console.timeEnd("🚀 ~ UserButton ~ client ~ useCurrentUser")
+  
+  console.log("🚀 ~ UserButton ~ user: ", user)
+  
+  if (!user) return <Link href="/login" className="text-base px-2 py-1 h-10 items-center bg-[#EFEFF2] rounded-md leading-7">دخول</Link>
 
   return (
     <DropdownMenu>
@@ -38,6 +45,6 @@ export const UserButton = () => {
           </DropdownMenuItem>
         </LogoutButton>
       </DropdownMenuContent>
-    </DropdownMenu>
-  );
+    </DropdownMenu >
+  )
 };

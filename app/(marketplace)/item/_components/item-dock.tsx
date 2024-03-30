@@ -5,7 +5,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 export const ItemDock = () => {
   return (
     <div className="tests fixed md:hidden bottom-[72px] w-[90%] h-auto p-3 text-center text-lg text-white
-      flex justify-between gap-3 border border-primaryBorder rounded-xl bg-white z-50 shadow-inner"
+      flex justify-between gap-3 border border-primaryBorder rounded-xl bg-white z-50 shadow-2xl"
     >
       <Button className="w-1/2 rounded-lg flex gap-2">
         <FaPhoneAlt size={20} />

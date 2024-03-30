@@ -1,13 +1,13 @@
-"use server"
-
 import { BreadcrumbResponsive } from "@/components/navigation/responsive-breadcrumb";
 import { ItemCarousel } from "../_components/item-carousel"
 import { SellerBox } from "../_components/seller-box";
-import { ItemHeader } from "../_components/item-header";
+import { ItemHeaderSkeleton, ItemHeader } from "../_components/item-header";
 import { ItemDock } from "../_components/item-dock";
-import { ItemDetails } from "../_components/item-details";
-import { ItemDesc } from "../_components/item-desc";
+import { ItemDetails, ItemDetailsSkeleton } from "../_components/item-details";
+import { ItemDesc, ItemDescSkeleton } from "../_components/item-desc";
 import { SellerBuyerSafetyNotice } from "../_components/buyer-seller-safety-notice";
+import { CategorySection } from "../../_components/category-section";
+import { Suspense } from "react";
 
 export default async function ItemPage({ params }: { params: { slug: string } }) {
   // self-healing url: url work by id or slug, and gets to full url automatically
@@ -37,40 +37,61 @@ export default async function ItemPage({ params }: { params: { slug: string } })
       phone: "01234567890"
     },
     details: {
-      detail1: "some details",
+      detail1: "تفاصيل منظمة",
       detail2: 3
     },
     desc: "دا وصف يدوي من البائع"
   }
 
   return (
-    <div dir="rtl" className="flex flex-col items-center pt-4 pb-12 md:px-8">
-      <BreadcrumbResponsive />
-      <div className="flex flex-col md:flex-row w-full my-4 md:my-8 gap-4 md:gap-0">
-        <ItemCarousel images={item.images} />
-        <div className="flex flex-col flex-auto md:w-2/5 px-4 md:pl-0 md:pr-4 gap-6 min-w-[300px] md:flex-col-reverse md:justify-end">
+    <div dir="rtl" className="flex flex-col items-center pb-12 md:px-6 gap-2">
+      <BreadcrumbResponsive className="flex py-1 justify-center md:justify-start md:pr-2 items-center w-full" />
+      <div className="flex flex-col md:flex-row w-full mb-4 md:my-2 gap-4 md:gap-0">
+        <div className="flex flex-col gap-6 md:w-3/5 min-w-[300px] md:rounded-2xl">
+          <Suspense fallback={<>loading...</>}>
+            <ItemCarousel images={item.images} />
+          </Suspense>
+          <div className="hidden md:flex flex-col gap-6">
+            <Suspense fallback={<ItemDetailsSkeleton />}>
+              <ItemDetails details={item.details} />
+            </Suspense>
+            <Suspense fallback={<ItemDescSkeleton />}>
+              <ItemDesc desc={item.desc} />
+            </Suspense>
+          </div>
+        </div>
+
+        <div className="flex flex-col flex-auto md:w-2/5 px-4 md:pl-0 md:pr-8 gap-6 min-w-[300px] md:flex-col-reverse md:justify-end">
           <div className="flex flex-col gap-6">
-            <ItemHeader item={{ name: item.name, price: item.price }} />
-            <div className="hidden md:block">
+            <Suspense fallback={<ItemHeaderSkeleton />}>
+              <ItemHeader item={{ name: item.name, price: item.price }} />
+            </Suspense>
+            <div className="flex md:hidden flex-col gap-6">
+              <Suspense fallback={<ItemDetailsSkeleton />}>
+                <ItemDetails details={item.details} />
+              </Suspense>
+              <Suspense fallback={<ItemDescSkeleton />}>
+                <ItemDesc desc={item.desc} />
+              </Suspense>
+            </div>
+            <div className="">
               <SellerBuyerSafetyNotice />
             </div>
           </div>
-          <div className="hidden md:block">
-            <SellerBox seller={item.seller} />
+          <div className="">
+            <Suspense fallback={<>loading...</>}>
+              <SellerBox seller={item.seller} />
+            </Suspense>
           </div>
         </div>
       </div>
-      <div className="w-full px-4 md:px-0 flex flex-col gap-6 pt-2 md:pt-0">
-        <ItemDetails details={item.details} />
-        <ItemDesc desc={item.desc} />
-        <div className="block md:hidden">
-          <SellerBox seller={item.seller} />
+
+      <Suspense fallback={<>loading...</>}>
+        <div dir="ltr" className="w-full">
+          <CategorySection name={"عروض مشابهة"} />
+          <CategorySection name={"سيارات"} />
         </div>
-        <div className="block md:hidden">
-          <SellerBuyerSafetyNotice />
-        </div>
-      </div>
-      <div className="h-80"></div>
+      </Suspense>
       <ItemDock />
     </div>
   )
