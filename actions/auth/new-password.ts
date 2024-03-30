@@ -4,7 +4,7 @@ import * as z from "zod";
 import bcrypt from "bcryptjs";
 
 import { NewPasswordSchema } from "@/schemas";
-import { getPasswordResetTokenByToken } from "@/data/password-reset-token";
+import { getPasswordResetTokenByToken } from "@/data/auth/password-reset-token";
 import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
 
