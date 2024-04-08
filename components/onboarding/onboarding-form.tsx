@@ -23,7 +23,6 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/auth/login";
 import { LoadingButton } from "../ui/loading-button";
-// import { Label } from "../ui/label";
 
 export const OnboardingForm = () => {
   const searchParams = useSearchParams();
@@ -104,27 +103,6 @@ export const OnboardingForm = () => {
             )}
             {!showTwoFactor && (
               <>
-                {/* <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          className="h-[52px] border-gray-300"
-                          disabled={isPending}
-                          placeholder="البريد الالكتروني"
-                          type="email"
-                          autoComplete="email"
-                          autoFocus
-                          onFocus={() => setError("")}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                 <FormField
                   control={form.control}
                   name="email"
@@ -165,15 +143,6 @@ export const OnboardingForm = () => {
                   render={({ field }) => (
                     <FormItem className="mt-2">
                       <FormControl>
-                        {/* <Input
-                          {...field}
-                          className="h-[52px] border-gray-300"
-                          disabled={isPending}
-                          placeholder="كلمة السر"
-                          type="password"
-                          autoComplete="current-password"
-                          onFocus={() => setError("")}
-                        /> */}
                         <div className="relative">
                           <Input
                             {...field}
