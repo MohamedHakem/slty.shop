@@ -3,6 +3,7 @@
   packages = [
     pkgs.nodejs_20
     pkgs.bun
+    pkgs.openssl 
   ];
   idx.extensions = [
     
