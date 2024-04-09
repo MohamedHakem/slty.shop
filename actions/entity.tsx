@@ -21,7 +21,7 @@ export const createEntity = async (values: z.infer<typeof EntityFormSchema>, use
   }
 
   const existingUser = await getUserById(userId);
-  if (!existingUser || !existingUser.email || !existingUser.password) {
+  if (!existingUser || !existingUser.email) {
     return { error: 'لا يوجد حساب مرتبط بهذا الايميل' };
   }
 
@@ -60,7 +60,7 @@ export const getEntityByUserIdAction = async (userId: string) => {
   }
 
   const existingUser = await getUserById(userId);
-  if (!existingUser || !existingUser.email || !existingUser.password) {
+  if (!existingUser || !existingUser.email) {
     return { error: 'لا يوجد حساب مرتبط بهذا الايميل' };
   }
 
