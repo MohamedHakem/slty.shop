@@ -24,7 +24,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
 
   const existingUser = await getUserByEmail(email);
 
-  if (!existingUser || !existingUser.email || !existingUser.password) {
+  if (!existingUser || !existingUser.email) {
     return { error: 'لا يوجد حساب مرتبط بهذا الايميل' };
   }
 

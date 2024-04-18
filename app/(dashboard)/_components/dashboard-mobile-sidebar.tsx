@@ -33,7 +33,8 @@ export const DashboardMobileSidebar = async () => {
               <ShoppingCart className="h-5 w-5" />
               Orders
               <Badge className="mr-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">6</Badge>
-            </Link>}
+            </Link>
+          }
           <Link
             href={`/dashboard/${entity?.type === EntityType.COMPANY ? "ads" : "products"}`}
             className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
