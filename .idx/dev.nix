@@ -24,10 +24,6 @@
         id = "web";
         manager = "web";
       }
-      {
-        id = "ios";
-        manager = "ios";
-      }
     ];
   };
 }

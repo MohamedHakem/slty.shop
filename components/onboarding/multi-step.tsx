@@ -49,23 +49,13 @@ export default function MultiStep() {
   // put if onboarding is complete or not in the localStorage, and check it here, if it's complete, redirect to dashboard, if not, continue with onboarding
 
   return (
-    // <div className="flex min-h-full flex-1 flex-col items-center justify-center p-4 backdrop-blur-xl sm:aspect-[4/3] md:aspect-[2/1]">
     <div dir="rtl" className="flex flex-col flex-1">
       <div className="mx-auto w-full md:min-w-[497px] max-w-2xl bg-white">
         <div className="flex w-full justify-between items-center rounded p-8 pt-4 transition-all duration-200 ease-in-out">
           <Step step={1} currentStep={step} />
           <Step step={2} currentStep={step} />
           <Step step={3} currentStep={step} isLast={true} />
-          {/* <Step step={4} currentStep={step} /> */}
         </div>
-        {/* a beautifully designed 2 choices with a main question asking the user what type of things they sell, whether they're a company or a shop: and then giving those 2 options with examples */}
-        {/* Dynamic content based on `step` */}
-        {/* a beautifully designed 2 choices with a main question asking the user what type of things they sell, 
-            whether they're a company or a shop: and then giving those 2 options with examples, it's one question but has 2 parts, maybe one main and one smaller size below
-            but the point is, I want to know whether the user is a company or a shop, so I can promote different offers in their dashboard, a company usually is an agency selling real estate or cars 
-            etc, a shop is more like fashion or shoes or cloths, so I need to know this, so it's a single question, and the 2 options should have examples in smaller size with icons 
-            and border indicating the option they clicked or choose, all this should be done in step 1 */}
-
         {step === 1 && (
           <div className="px-8 transition-all duration-200 ease-in-out">
             <div className="flex flex-col w-full items-center justify-center mb-4">
@@ -73,7 +63,6 @@ export default function MultiStep() {
               <p className="mt-2 text-lg font-semibold text-gray-600">هل انت شركة أم متجر؟</p>
             </div>
             <RadioGroup dir="rtl" defaultValue={entityType} onValueChange={handleValueChange} className="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-4 mt-8">
-              {/* {console.log("entityType: ", entityType)} */}
               <div className="transition-all duration-200 ease-in-out">
                 <RadioGroupItem value={EntityType.COMPANY} id={EntityType.COMPANY} className="peer sr-only" />
                 <Label
@@ -107,7 +96,7 @@ export default function MultiStep() {
           <EntityForm entityType={entityType} handleContinue={handleContinue} handleBack={handleBack} />
         )}
 
-        {/* in step === 3, show a congratulations message celebrating the user, and a button to add their first Ad!  */}
+        {/* <MultiStepLoader loadingStates={loadingStates} loading={loading} duration={2000} /> */}
         {step === 3 && (
           <div className="p-8">
             <div className="flex flex-col gap-20 items-center justify-center">
