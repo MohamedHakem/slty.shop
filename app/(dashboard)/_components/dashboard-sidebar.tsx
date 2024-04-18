@@ -24,11 +24,11 @@ export const DashboardSidebar = async () => {
         </div>
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-            <Link href="/dashboard" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground" >
+            <Link href="/dashboard" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground" prefetch={false}>
               <Home className="h-5 w-5" />
               الرئيسية
             </Link>
-            {entity.type === EntityType.SHOP && <Link href="/dashboard/orders" className="mx-[-0.65rem] flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary">
+            {entity.type === EntityType.SHOP && <Link href="/dashboard/orders" className="mx-[-0.65rem] flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary" prefetch={false}>
               <ShoppingCart className="h-5 w-5" />
               الأوردرات
               <Badge className="mr-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">6</Badge>
@@ -36,6 +36,7 @@ export const DashboardSidebar = async () => {
             <Link
               href={`/dashboard/${entity.type === EntityType.COMPANY ? "ads" : "products"}`}
               className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+              prefetch={false}
             >
               <Package className="h-5 w-5" />
               {entity.type === EntityType.COMPANY ? "الإعلانات" : "المنتجات"}

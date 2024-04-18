@@ -10,9 +10,9 @@ export const Footer = () => {
   return (
     <div dir="rtl" className={`w-full border-t border-primaryBorder p-4 mb-${isItem ? "40" : "20"} md:mb-10`}>
       <div className="flex justify-center items-center gap-4">
-        <Link href="/about">عنا</Link>
+        <Link prefetch={false} href="/about">عنا</Link>
         {" - "}
-        <Link href="/contact-us">تواصل معنا</Link>
+        <Link prefetch={false} href="/contact-us">تواصل معنا</Link>
       </div>
     </div>
   )

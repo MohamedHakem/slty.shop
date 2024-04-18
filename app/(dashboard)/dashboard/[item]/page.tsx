@@ -64,9 +64,9 @@ import { notFound } from "next/navigation"
 export default function ItemPage({ params }: { params: { item: string } }) {
   console.log("🚀 ~ ItemPage ~ params:", params)
 
-  const isAdsOrProducts = params.item === "ads"|| params.item === "products"
+  const isAdsOrProducts = params.item === "ads" || params.item === "products"
 
-  if(!isAdsOrProducts)  notFound()
+  if (!isAdsOrProducts) notFound()
 
   return (
     <div className="flex min-h-[calc(100vh-60px)] h-full w-full flex-col bg-muted/70">
@@ -84,6 +84,7 @@ export default function ItemPage({ params }: { params: { item: string } }) {
                 <Link
                   href="#"
                   className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                  prefetch={false}
                 >
                   <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
                   <span className="sr-only">Acme Inc</span>
@@ -91,6 +92,7 @@ export default function ItemPage({ params }: { params: { item: string } }) {
                 <Link
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  prefetch={false}
                 >
                   <Home className="h-5 w-5" />
                   Dashboard
@@ -98,6 +100,7 @@ export default function ItemPage({ params }: { params: { item: string } }) {
                 <Link
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  prefetch={false}
                 >
                   <ShoppingCart className="h-5 w-5" />
                   Orders
@@ -105,6 +108,7 @@ export default function ItemPage({ params }: { params: { item: string } }) {
                 <Link
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-foreground"
+                  prefetch={false}
                 >
                   <Package className="h-5 w-5" />
                   Products
@@ -112,6 +116,7 @@ export default function ItemPage({ params }: { params: { item: string } }) {
                 <Link
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  prefetch={false}
                 >
                   <Users2 className="h-5 w-5" />
                   Customers
@@ -119,6 +124,7 @@ export default function ItemPage({ params }: { params: { item: string } }) {
                 <Link
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  prefetch={false}
                 >
                   <LineChart className="h-5 w-5" />
                   Settings
@@ -130,13 +136,13 @@ export default function ItemPage({ params }: { params: { item: string } }) {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="#">Dashboard</Link>
+                  <Link href="#" prefetch={false}>Dashboard</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="#">Products</Link>
+                  <Link href="#" prefetch={false}>Products</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />

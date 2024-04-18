@@ -68,7 +68,7 @@ export function BreadcrumbResponsive({ className, textColor }: { className?: str
                   <DropdownMenuContent align="start">
                     {items.slice(1, -2).map((item, index) => (
                       <DropdownMenuItem key={index} dir="rtl">
-                        <Link href={item.href ? item.href : "#"} className="w-full">
+                        <Link prefetch={false} href={item.href ? item.href : "#"} className="w-full">
                           {item.label}
                         </Link>
                       </DropdownMenuItem>
@@ -90,7 +90,7 @@ export function BreadcrumbResponsive({ className, textColor }: { className?: str
                     <div className="grid gap-1 px-4" dir="rtl">
                       <div className="group">
                         <div className="w-full flex flex-col justify-between">
-                          <Link href={"/"} className="flex items-center gap-2 h-10 justify-between">
+                          <Link prefetch={false} href={"/"} className="flex items-center gap-2 h-10 justify-between">
                             {items.slice(0, 1).map(r => r.label)}
                             <ChevronLeft />
                           </Link>
@@ -112,7 +112,7 @@ export function BreadcrumbResponsive({ className, textColor }: { className?: str
                                       <div className="flex items-center justify-between w-full">
                                         <div className="w-full flex flex-col gap-1">
                                           <div className="flex items-center gap-2 justify-between h-10">
-                                            <Link href={item.href} className="text-gray-gray1k font-semibold text-base">{item.label}</Link>
+                                            <Link prefetch={false} href={item.href} className="text-gray-gray1k font-semibold text-base">{item.label}</Link>
                                             <ChevronLeft />
                                           </div>
                                         </div>
@@ -143,7 +143,7 @@ export function BreadcrumbResponsive({ className, textColor }: { className?: str
             {item.href !== "" ? (
               <>
                 <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
-                  <Link href={item.href}>{item.label}</Link>
+                  <Link prefetch={false} href={item.href}>{item.label}</Link>
                 </BreadcrumbLink>
                 <div className="[&>svg]:size-3.5" aria-hidden={"true"}>
                   <ChevronLeft />
@@ -152,7 +152,7 @@ export function BreadcrumbResponsive({ className, textColor }: { className?: str
             ) : (
               <>
                 <BreadcrumbPage className={`max-w-20 truncate md:max-w-none ${textColor}`}>
-                  <Link href={item.href}>{item.label}</Link>
+                  <Link prefetch={false} href={item.href}>{item.label}</Link>
                 </BreadcrumbPage>
               </>
             )}

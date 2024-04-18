@@ -16,7 +16,7 @@ export const Navbar = () => {
           asChild
           variant={pathname === "/server" ? "default" : "outline"}
         >
-          <Link href="/server">
+          <Link prefetch={false} href="/server">
             Server
           </Link>
         </Button>
@@ -24,7 +24,7 @@ export const Navbar = () => {
           asChild
           variant={pathname === "/client" ? "default" : "outline"}
         >
-          <Link href="/client">
+          <Link prefetch={false} href="/client">
             Client
           </Link>
         </Button>
@@ -32,7 +32,7 @@ export const Navbar = () => {
           asChild
           variant={pathname === "/admin" ? "default" : "outline"}
         >
-          <Link href="/admin">
+          <Link prefetch={false} href="/admin">
             Admin
           </Link>
         </Button>
@@ -40,7 +40,7 @@ export const Navbar = () => {
           asChild
           variant={pathname === "/seller" ? "default" : "outline"}
         >
-          <Link href="/seller">
+          <Link prefetch={false} href="/seller">
             Seller
           </Link>
         </Button>
@@ -48,7 +48,7 @@ export const Navbar = () => {
           asChild
           variant={pathname === "/settings" ? "default" : "outline"}
         >
-          <Link href="/settings">
+          <Link prefetch={false} href="/settings">
             Settings
           </Link>
         </Button>

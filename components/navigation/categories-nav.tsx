@@ -62,7 +62,7 @@ export const CategoriesNav = () => {
         >
           <CarouselContent className="md:-ml-4 gap-3" dir="rtl" withBefore>
             {categories.slice(0, -1).map((c, i) => (
-              <Link href={`/category/${i + 1}`} key={i}>
+              <Link prefetch={false} href={`/category/${i + 1}`} key={i}>
                 <CarouselItem className="basis-auto">
                   <div className="flex flex-col items-center justify-center text-center 
                   rounded-xl w-[72px] h-[72px] md:w-28 md:h-28 bg-[#EFEFF2]">
@@ -72,7 +72,7 @@ export const CategoriesNav = () => {
               </Link>
             ))}
 
-            <Link href={`/category/${categories.at(-1)?.name ?? "last"}`}>
+            <Link prefetch={false} href={`/category/${categories.at(-1)?.name ?? "last"}`}>
               <CarouselItem className="basis-auto pl-3">
                 <div className="flex flex-col items-center justify-center text-center 
                   rounded-xl w-[72px] h-[72px] md:w-28 md:h-28 bg-[#EFEFF2] mx-">

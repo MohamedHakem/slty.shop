@@ -1,0 +1,256 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextIndex", "fullTextSearch"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum ActiveRole {
+  User
+  Seller
+  Admin
+}
+
+enum ActiveLanguage {
+  AR
+  EN
+}
+
+model User {
+  id                              String         @id @default(cuid())
+  name                            String?
+  email                           String?        @unique
+  emailVerified                   DateTime?
+  password                        String?
+  username                        String?        @unique
+  image                           String?
+  phone_number                    String?
+  shipping_country                String?
+  shipping_city                   String?
+  shipping_address                String?
+  shipping_general_notes          String?
+  shipping_info_toSellers_consent Boolean?
+  shipping_info_save_consent      Boolean?
+  isBuyer                         Boolean        @default(false)
+  isSeller                        Boolean        @default(false)
+  isWriter                        Boolean        @default(false)
+  isQuizMaker                     Boolean        @default(false)
+  isRecipeMaker                   Boolean        @default(false)
+  isTwoFactorEnabled              Boolean        @default(false)
+  activeRole                      ActiveRole     @default(User)
+  preffered_language              ActiveLanguage @default(AR)
+
+  userRoles             UserRole[]
+  Entity                Entity[]
+  account               Account?
+  TwoFactorConfirmation TwoFactorConfirmation?
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  users UserRole[]
+}
+
+model UserRole {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  roleId    Int      @default(1)
+  name      String   @default("User")
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@unique([userId, roleId], name: "User_Role_CompositeIndex")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @unique
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorConfirmation {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+model Item {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  name        String
+  description String
+  price       Float
+  image       String
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  Attribute Attribute[]
+
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+}
+
+model Category {
+  id                 Int      @id @default(autoincrement())
+  slug               String   @unique
+  name               String
+  parent_category_id Int?
+  createdAt          DateTime @default(now()) @db.Timestamp(0)
+  updatedAt          DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  items Item[]
+
+  Template Template?
+}
+
+model Template {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  fields Field[]
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int      @unique
+}
+
+model Field {
+  id         Int       @id @default(autoincrement())
+  name       String
+  isRequired Boolean   @default(false)
+  type       FieldType
+  createdAt  DateTime  @default(now()) @db.Timestamp(0)
+  updatedAt  DateTime  @default(now()) @updatedAt @db.Timestamp(0)
+
+  attributes Attribute[]
+
+  template   Template @relation(fields: [templateId], references: [id])
+  templateId Int
+}
+
+enum FieldType {
+  Text
+  Number
+  Date
+}
+
+model Attribute {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value String
+
+  field   Field @relation(fields: [fieldId], references: [id])
+  fieldId Int
+  item    Item  @relation(fields: [itemId], references: [id])
+  itemId  Int
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+
+  @@unique([fieldId, itemId])
+}
+
+enum EntityType {
+  PROFILE
+  SHOP
+  COMPANY
+}
+
+model Entity {
+  id           Int        @id @default(autoincrement())
+  name         String?
+  username     String?
+  description  String?
+  type         EntityType @default(PROFILE)
+  image        String?
+  cover_image  String?
+  phone_number String?
+  email        String?
+  website      String?
+  facebook     String?
+  instagram    String?
+  twitter      String?
+  linkedin     String?
+  youtube      String?
+  snapchat     String?
+  tiktok       String?
+  whatsapp     String?
+  address      String?
+  city         String?
+  country      String?
+  postal_code  String?
+  isVerified   Boolean    @default(false)
+  isPublished  Boolean    @default(false)
+  isDeleted    Boolean    @default(false)
+
+  owner_id String
+  owner    User   @relation(fields: [owner_id], references: [id])
+
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+enum OrderStatus {
+  Pending
+  Processing
+  Shipped
+  Delivered
+  Cancelled
+}

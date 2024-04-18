@@ -59,7 +59,7 @@ export const SellerBox = ({ seller }: { seller: { name: string, username: string
 
   return (
     <div className="flex flex-col p-4 border rounded-xl">
-      <Link href={`/shop/${seller.username}`} className="flex items-center gap-4">
+      <Link prefetch={false} href={`/shop/${seller.name}`} className="flex items-center gap-4">
         <div className="border rounded-xl h-20 w-20 bg-primaryBorder"></div>
         <div className="flex flex-col">
           <div className="text-lg">{seller.name}</div>
@@ -83,19 +83,3 @@ export const SellerBox = ({ seller }: { seller: { name: string, username: string
     </div >
   )
 }
-
-// export const SellerBoxSkeleton = () => {
-//   return (
-//     <div className="flex flex-col gap-2 max-h-[99px] p-3 md:p-4 border rounded-xl">
-//       <div className="flex items-center gap-4">
-//         <div className="animate-pulse w-20 h-20 bg-gray-300 rounded-xl border shimmer"></div>
-//         <div className="flex flex-col">
-//           <div className="animate-pulse h-7 w-1/2 bg-gray-300 rounded mb-4 shimmer"></div>
-//           <div className="animate-pulse h-7 w-1/2 bg-gray-300 rounded mb-4 shimmer"></div>
-//         </div>
-//       </div>
-      
-//       <div className="animate-pulse w-full h-12 bg-gray-300 rounded-xl border shimmer"></div>
-//     </div>
-//   );
-// };

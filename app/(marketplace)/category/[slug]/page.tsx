@@ -22,7 +22,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-flow-row gap-6 w-full my-4">
           {products.map((c, i) => (
-            <Link href={`/item/${i + 1}`} key={i}>
+            <Link prefetch={false} href={`/item/${i + 1}`} key={i}>
               <div className="basis-auto active:scale-95 transition-all duration-75 ease-in-out">
                 <div className={`flex flex-col gap-2 items-center justify-center text-center rounded-2xl bg-[#EFEFF2] aspect-square relative overflow-hidden`}>
                   <Image

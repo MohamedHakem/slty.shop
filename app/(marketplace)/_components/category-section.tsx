@@ -38,12 +38,12 @@ export const CategorySection = ({ name, size, cardBg }:
   return (
     <div className="relative flex flex-col gap-3 justify-center bg-white py-4  w-full max-w-[1100px] pr-3 md:pr-0">
       <div className="flex flex-row justify-between pl-2 md:pl-0">
-        <Link href={`/category/${name}`} className="flex text-primary items-center">
+        <Link prefetch={false} href={`/category/${name}`} className="flex text-primary items-center">
           <ChevronLeft size={20} />
           <p className="hover:text-primaryDark">عرض الكل</p>
         </Link>
         <h2 className="text-2xl font-bold">
-          <Link href={`/category/${name}`}>{name}</Link>
+          <Link prefetch={false} href={`/category/${name}`}>{name}</Link>
         </h2>
       </div>
       <Carousel
@@ -64,7 +64,7 @@ export const CategorySection = ({ name, size, cardBg }:
       >
         <CarouselContent className="-ml-4 gap-3" dir="rtl" withBefore>
           {products.map((c, i) => (
-            <Link key={i} href={`/item/${i + 1}`}>
+            <Link prefetch={false} key={i} href={`/item/${i + 1}`}>
               <CarouselItem className="basis-auto">
                 <div className={`flex flex-col items-center justify-center text-center 
                 rounded-xl bg-[${cardBg ? cardBg : "#EFEFF2"}]`}
@@ -75,7 +75,7 @@ export const CategorySection = ({ name, size, cardBg }:
             </Link>
           ))}
 
-          <Link href={`/category/${name}`}>
+          <Link prefetch={false} href={`/category/${name}`}>
             <CarouselItem className="basis-auto pl-3">
               <div className={`flex flex-col items-center justify-center text-center 
               rounded-xl bg-[${cardBg ? cardBg : "#EFEFF2"}]`}

@@ -23,7 +23,7 @@ import Link from "next/link";
 export const UserButton = () => {
   const user = useCurrentUser();
     
-  if (!user) return <Link href="/login" className="text-base px-2 py-1 h-10 items-center bg-[#EFEFF2] rounded-md leading-7">دخول</Link>
+  if (!user) return <Link prefetch={false} href="/login" className="text-base px-2 py-1 h-10 items-center bg-[#EFEFF2] rounded-md leading-7">دخول</Link>
 
   return (
     <DropdownMenu dir="rtl">

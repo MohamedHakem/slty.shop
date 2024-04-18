@@ -20,26 +20,27 @@ export const DashboardMobileSidebar = async () => {
       </SheetTrigger>
       <SheetContent side="right" dir='rtl' className="flex flex-col">
         <nav className="grid gap-2 text-lg font-medium">
-          <Link href="/" className="flex items-center justify-center gap-2 text-lg font-semibold">
+          <Link href="/" className="flex items-center justify-center gap-2 text-lg font-semibold" prefetch={false}>
             <SltyLogo style={1} iconSize={50} textSize={20} />
             <span className="sr-only">Slty shop - سلتي</span>
           </Link>
-          <Link href="/dashboard" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground" >
+          <Link href="/dashboard" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground" prefetch={false}>
             <Home className="h-5 w-5" />
             Dashboard
           </Link>
-          {entity.type === EntityType.SHOP &&
-            <Link href="/dashboard/orders" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-foreground hover:text-foreground">
+          {entity?.type === EntityType.SHOP &&
+            <Link href="/dashboard/orders" className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-foreground hover:text-foreground" prefetch={false}>
               <ShoppingCart className="h-5 w-5" />
               Orders
               <Badge className="mr-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">6</Badge>
             </Link>}
           <Link
-            href={`/dashboard/${entity.type === EntityType.COMPANY ? "ads" : "products"}`}
+            href={`/dashboard/${entity?.type === EntityType.COMPANY ? "ads" : "products"}`}
             className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+            prefetch={false}
           >
             <Package className="h-5 w-5" />
-            {entity.type === EntityType.COMPANY ? "ads" : "Products"}
+            {entity?.type === EntityType.COMPANY ? "ads" : "Products"}
           </Link>
         </nav>
         <div className="mt-auto">
