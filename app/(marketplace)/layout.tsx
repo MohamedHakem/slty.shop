@@ -5,11 +5,13 @@ import { Nav } from "@/components/navigation/nav";
 
 const MarketplaceLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="w-full max-w-6xl min-h-screen mx-auto flex flex-col relative">
+    <main className="w-full min-h-screen mx-auto flex flex-col relative">
       <div className="h-14 md:h-16"><Nav /></div>
-      <CategoriesNav className="hidden md:block" />
-      {children}
-      <BottomNav />
+      <div className="max-w-6xl mx-auto flex flex-col relative w-full">
+        <CategoriesNav className="hidden md:block" />
+        {children}
+        <BottomNav />
+      </div>
       <Footer />
     </main>
   );

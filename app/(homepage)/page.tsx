@@ -1,7 +1,7 @@
 import { CategoriesNav } from "@/components/navigation/categories-nav";
 // import { ClaimShopName } from "@/components/claim-shopname";
 import { CategorySection } from "../(marketplace)/_components/category-section";
-import { currentUser } from "@/lib/auth";
+// import { currentUser } from "@/lib/auth";
 
 export default async function Home() {
   // console.time("🚀 ~ Home ~ server ~ user")

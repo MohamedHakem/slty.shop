@@ -16,7 +16,7 @@ export const Nav = async () => {
   return (
     <div className="border-b flex items-center w-full h-14 py-3 sticky top-0 bg-white z-20 text-center">
       <nav dir={dir} className="flex items-center justify-between px-4 md:px-10 max-w-6xl w-full mx-auto">
-        <SltyLogo style={1} iconSize={50} textSize={20} />
+        <SltyLogo style={1} iconSize={50} textSize={20} withBackBtn={true} />
         <div className="flex items-center gap-2">
           {/* {user ? <UserButton /> : <Link href="/login" className="text-base px-2 py-1 h-10 items-center bg-[#EFEFF2] rounded-md">دخول</Link>} */}
           <UserButton />
