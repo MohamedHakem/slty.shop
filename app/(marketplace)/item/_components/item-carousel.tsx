@@ -9,7 +9,7 @@ type ItemCarouselType = { src: string; alt: string }[]
 export const ItemCarousel = ({ images }: { images: ItemCarouselType }) => {
   // const data = await slowFetch()
   // console.log("🚀 ~ ItemCarousel ~ data:", data)
-  
+
   return (
     <div className="flex flex-col items-center h-auto relative">
       <Carousel className="w-full flex items-center h-auto min-w-[300px]" opts={{ align: 'center', containScroll: "trimSnaps", direction: "rtl" }}>
@@ -25,8 +25,8 @@ export const ItemCarousel = ({ images }: { images: ItemCarouselType }) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="shadow-xl top-1/2 right-1 md:right-2 w-10 md:w-12 h-10 md:h-12" />
-        <CarouselNext className="shadow-xl top-1/2 left-1 md:left-2 w-10 md:w-12 h-10 md:h-12" />
+        <CarouselPrevious className="shadow-xl top-1/2 right-1 md:right-2 w-10 md:w-12 h-10 md:h-12 disabled:hidden" />
+        <CarouselNext className="shadow-xl top-1/2 left-1 md:left-2 w-10 md:w-12 h-10 md:h-12 disabled:hidden" />
       </Carousel>
       <div className="absolute left-3 bottom-3 flex gap-1 items-center border border-primaryBorder
         p-2 h-8 rounded-lg text-md text-gray-500 font-normal shadow-md bg-white">

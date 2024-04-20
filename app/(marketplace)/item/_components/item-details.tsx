@@ -7,7 +7,7 @@ export const ItemDetails = async ({ details }: { details: { detail1: string, det
   // ).then((res) => res.json());
   // console.log("🚀 ~ ItemCarousel ~ product:", product)
 
-  const data = await slowFetch(5)
+  const data = await slowFetch(0)
   console.log("🚀 ~ ItemDetails ~ data.discount: ", data.discount)
 
   return (

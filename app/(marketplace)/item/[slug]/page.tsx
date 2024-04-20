@@ -45,12 +45,15 @@ export default async function ItemPage({ params }: { params: { slug: string } })
 
   return (
     <div dir="rtl" className="flex flex-col items-center pb-12 md:px-10 gap-2">
-      <BreadcrumbResponsive className="flex py-1 justify-center md:justify-start md:pr-2 md:pt-2 items-center w-full" />
+      <BreadcrumbResponsive className="hidden md:flex py-1 justify-center md:justify-start md:pr-2 md:pt-2 items-center w-full" />
       <div className="flex flex-col md:flex-row w-full mb-4 md:mb-2 gap-4 md:gap-10">
-        <div className="flex flex-col gap-6 md:w-3/5 min-w-[300px] md:rounded-2xl">
-          <Suspense fallback={<>loading...</>}>
-            <ItemCarousel images={item.images} />
-          </Suspense>
+        <div className="flex flex-col gap-2 md:gap-6 md:w-3/5 min-w-[300px] md:rounded-2xl">
+          <div>
+            <Suspense fallback={<>loading...</>}>
+              <ItemCarousel images={item.images} />
+            </Suspense>
+            {/* <BreadcrumbResponsive className="flex md:hidden py-1 justify-center md:justify-start md:pr-2 md:pt-2 items-center w-full" /> */}
+          </div>
           <div className="hidden md:flex flex-col gap-6">
             <Suspense fallback={<ItemDetailsSkeleton />}>
               <ItemDetails details={item.details} />

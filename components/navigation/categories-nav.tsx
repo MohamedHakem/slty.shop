@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/carousel"
 import Link from "next/link"
 import AutoScroll from "embla-carousel-auto-scroll"
+import { cn } from "@/lib/utils"
 
-export const CategoriesNav = () => {
+export const CategoriesNav = ({ className }: { className?: string }) => {
   const categories = [
     { name: "أجهزة كهربائية", image: "" },
     { name: "أجهزة كهربائية", image: "" },
@@ -42,7 +43,7 @@ export const CategoriesNav = () => {
   // TODO: add a hover effect
 
   return (
-    <div className="w-full m-auto">
+    <div className={cn("w-full m-auto", className)}>
       <div className="relative flex justify-center bg-white py-2 md:mb-0 md:py-2 w-full max-w-[1100px] m-auto">
         <Carousel
           opts={{
@@ -83,8 +84,8 @@ export const CategoriesNav = () => {
               </CarouselItem>
             </Link>
           </CarouselContent>
-          <CarouselPrevious className="shadow-md top-1/2 right-1 md:-right-4 w-10 h-10" />
-          <CarouselNext className="shadow-md top-1/2 left-1 md:-left-4 w-10 h-10" />
+          <CarouselPrevious className="shadow-md top-1/2 right-1 md:-right-4 w-10 h-10 disabled:hidden" />
+          <CarouselNext className="shadow-md top-1/2 left-1 md:-left-4 w-10 h-10 disabled:hidden" />
         </Carousel>
       </div>
     </div>

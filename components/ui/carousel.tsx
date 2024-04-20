@@ -180,7 +180,7 @@ const CarouselContent = React.forwardRef<
     <div ref={carouselRef}
       className={`overflow-hidden block
     ${withAfter ?
-          "after:bg-gradient-to-l from-transparent to-white after:w-12 after:h-full after:absolute after:left-0 after:bottom-0"
+          "after:bg-gradient-to-l from-transparent to-white after:w-8 after:h-full after:absolute after:left-0 after:bottom-0"
           : ""}
       `}>
       <div ref={ref}

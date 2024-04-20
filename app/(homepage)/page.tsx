@@ -9,7 +9,7 @@ export default async function Home() {
   // console.timeEnd("🚀 ~ Home ~ server ~ user")
   
   return (
-    <div className="flex flex-col items-center md:px-4">
+    <div className="flex flex-col items-center px-4">
       <CategoriesNav />
       {/* <ClaimShopName /> */}
       <CategorySection name={"أحذية"} />

@@ -1,7 +1,7 @@
 import { slowFetch } from "@/data/slow-fetch"
 
 export const ItemDesc = async ({ desc }: { desc: string }) => {
-  const data = await slowFetch(7)
+  const data = await slowFetch(0)
   console.log("🚀 ~ ItemDetails ~ data.description: ", data.description)
 
   return (

@@ -36,16 +36,13 @@ export const CategorySection = ({ name, size, cardBg }:
   // TODO: add a hover effect
 
   return (
-    <div className="relative flex flex-col gap-3 justify-center bg-white py-4  w-full max-w-[1100px] pr-3 md:pr-0">
-      <div className="flex flex-row justify-between pl-2 md:pl-0">
-        <Link prefetch={false} href={`/category/${name}`} className="flex text-primary items-center">
-          <ChevronLeft size={20} />
-          <p className="hover:text-primaryDark">عرض الكل</p>
+    <div dir="rtl" className="relative flex flex-col gap-3 justify-center bg-white py-4  w-full max-w-[1100px] pr-3 md:pr-0">
+      <h2 className="pl-2 md:pl-0 text-2xl font-bold">
+        <Link prefetch={false} href={`/category/${name}`} className="flex items-center w-fit">
+          <span className="transition-all duration-200 ease-in-out hover:pl-4">{name}</span>
+          <ChevronLeft size={24} className="mt-1" />
         </Link>
-        <h2 className="text-2xl font-bold">
-          <Link prefetch={false} href={`/category/${name}`}>{name}</Link>
-        </h2>
-      </div>
+      </h2>
       <Carousel
         opts={{
           align: 'start',
