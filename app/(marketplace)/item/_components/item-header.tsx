@@ -7,7 +7,7 @@ export const ItemHeader = async ({ item }: { item: { name: string, price: number
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 border rounded-xl">
       <h1 className="inline text-xl font-medium">{data.name}</h1>
-      <p className="text-primary text-xl font-semibold">{data.price.amount} {" "} ج.م</p>
+      <p className="text-[#0F1111] text-xl font-medium">{data.price.amount} {" "} ج.م</p>
     </div>
   )
 }

@@ -28,7 +28,7 @@ export const SltyLogo = ({
     <div className={cn("flex", className)}>
       {isMobile && isItem && withBackBtn &&
         <div className={`flex mx-auto my-auto transition-all duration-1000 ease-in-out items-center ${withBackBtn ? "opacity-100" : "opacity-0"}`}>
-          <Button variant={"outline"} className="w-11 h-11 p-1 rounded-full m-auto" onClick={() => router.back()}>
+          <Button name="back" variant={"outline"} className="w-11 h-11 p-1 rounded-full m-auto" onClick={() => router.back()}>
             {/* <button> */}
             <MdOutlineKeyboardArrowRight size={24} />
             {/* </button> */}
