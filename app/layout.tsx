@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description: "Sell anything anywhere For Free",
 };
 
+export const revalidate = 3600
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -20,6 +21,7 @@ export default async function RootLayout({
   const session = await auth();
   const lang = "ar";
   const dir = "ltr";
+
 
   return (
     <SessionProvider session={session}>

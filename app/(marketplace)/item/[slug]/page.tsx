@@ -9,6 +9,7 @@ import { SellerBuyerSafetyNotice } from "../_components/buyer-seller-safety-noti
 import { CategorySection } from "../../_components/category-section";
 import { Suspense } from "react";
 
+export const revalidate = 3600
 export default async function ItemPage({ params }: { params: { slug: string } }) {
   // self-healing url: url work by id or slug, and gets to full url automatically
   // the short-url would be the /id one, and the long-url would be the /id-slug one 
