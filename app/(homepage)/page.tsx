@@ -15,9 +15,9 @@ export default async function Home() {
       <CategorySection name={"أحذية"} />
       <CategorySection name={"ملابس"} />
       <CategorySection name={"عقارات"} />
-      <CategorySection name={"لابات"} />
+      {/* <CategorySection name={"لابات"} />
       <CategorySection name={"هدايا"} />
-      <CategorySection name={"سيارات"} />
+      <CategorySection name={"سيارات"} /> */}
     </div>
   );
 }
