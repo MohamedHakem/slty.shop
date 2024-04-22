@@ -1,7 +1,8 @@
 import { CategoriesNav } from "@/components/navigation/categories-nav";
 import { CategorySection } from "../(marketplace)/_components/category-section";
 
-export const revalidate = 3600
+export const dynamic = "force-static";
+// export const revalidate = 3600
 export default async function Home() {
 
   return (

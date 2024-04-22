@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export const revalidate = 3600
+
+export const dynamic = "force-static";
+// export const revalidate = 3600
 export default async function CategoryPage({ params }: { params: { slug: string } }) {
   const categoryName = decodeURIComponent(params.slug);
   const products = [
