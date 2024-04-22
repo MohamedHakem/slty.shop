@@ -6,7 +6,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { usePathname } from 'next/navigation'
 import { useWindowSize } from "@uidotdev/usehooks";
 import { useRouter } from "next/navigation";
-// import { Button } from "./ui/button";
+import { Button } from "./ui/button";
 
 export const SltyLogo = ({
   style,
@@ -27,10 +27,12 @@ export const SltyLogo = ({
   return (
     <div className={cn("flex", className)}>
       {isMobile && isItem && withBackBtn &&
-        <div className={`flex mx-auto p-2 rounded-full border my-auto transition-all duration-1000 ease-in-out items-center ${withBackBtn ? "opacity-100" : "opacity-0"}`}>
-          <button onClick={() => router.back()}>
+        <div className={`flex mx-auto my-auto transition-all duration-1000 ease-in-out items-center ${withBackBtn ? "opacity-100" : "opacity-0"}`}>
+          <Button variant={"outline"} className="w-11 h-11 p-1 rounded-full m-auto" onClick={() => router.back()}>
+            {/* <button> */}
             <MdOutlineKeyboardArrowRight size={24} />
-          </button>
+            {/* </button> */}
+          </Button>
         </div>
       }
       <Link href="/" className={`flex flex-${dir} items-center gap-2 ${isMobile && isItem ? "transition-all duration-700 ease-in-out mr-8" : "mr-0"}`}>

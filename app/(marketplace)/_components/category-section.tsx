@@ -23,9 +23,9 @@ export const CategorySection = ({ name, size, cardBg }:
     { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
     { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
     { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
-    { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
-    { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
-    { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
+    // { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
+    // { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
+    // { name: "أجهزة كهربائية", image: "", price: "", rate: 0 },
   ]
 
   // TODO: fetch products from the server
