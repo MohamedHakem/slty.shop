@@ -22,13 +22,12 @@ export const SltyLogo = ({
   const size = useWindowSize();
   const isMobile = size.width ? size.width < 768 : false;
   const router = useRouter()
-  if (isItem) console.log("logo is inside an item page")
 
   return (
     <div className={cn("flex", className)}>
       {isMobile && isItem && withBackBtn &&
         <div className={`flex mx-auto my-auto transition-all duration-1000 ease-in-out items-center ${withBackBtn ? "opacity-100" : "opacity-0"}`}>
-          <Button name="back" variant={"outline"} className="w-11 h-11 p-1 rounded-full m-auto" onClick={() => router.back()}>
+          <Button aria-label="back" variant={"outline"} className="w-11 h-11 p-1 rounded-full m-auto" onClick={() => router.back()}>
             {/* <button> */}
             <MdOutlineKeyboardArrowRight size={24} />
             {/* </button> */}
