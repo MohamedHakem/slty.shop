@@ -79,10 +79,10 @@ export const LoginForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-3"
+          className="space-y-5"
           dir={"rtl"}
         >
-          <div className="space-y-3">
+          <div className="space-y-4">
             {showTwoFactor && (
               <FormField
                 control={form.control}
@@ -165,10 +165,20 @@ export const LoginForm = () => {
                           >
                             كلمة السر
                           </label>
+                          <Button
+                            size="sm"
+                            variant="link"
+                            asChild
+                            className="px-0 font-normal !mt-0 w-fit justify-end absolute top-[10px] left-3"
+                          >
+                            <Link href="/reset" className="font-normal">
+                              نسيت كلمة السر؟
+                            </Link>
+                          </Button>
                         </div>
                       </FormControl>
                       <FormMessage />
-                      <Button
+                      {/* <Button
                         size="sm"
                         variant="link"
                         asChild
@@ -177,7 +187,7 @@ export const LoginForm = () => {
                         <Link href="/reset" className="font-normal">
                           نسيت كلمة السر؟
                         </Link>
-                      </Button>
+                      </Button> */}
                     </FormItem>
                   )}
                 />
@@ -192,8 +202,7 @@ export const LoginForm = () => {
             disabled={isPending}
             loading={isPending}
             type="submit"
-            // className="w-full text-xl !mt-[8px]"
-            className="w-full text-xl"
+            className="w-full text-xl mt-4"
           >
             {showTwoFactor ? "تأكيد" : "دخول"}
           </LoadingButton>
