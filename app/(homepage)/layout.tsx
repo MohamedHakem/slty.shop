@@ -9,7 +9,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
       <Nav />
       <div className="w-full max-w-6xl mx-auto flex flex-col relative">
       {children}
-      <BottomNav />
+      {/* <BottomNav /> */}
       </div>
       <Footer />
     </main>
