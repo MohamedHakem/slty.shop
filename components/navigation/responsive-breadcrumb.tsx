@@ -33,7 +33,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ChevronLeft } from "lucide-react"
-// import Image from "next/image"
 
 const items: { href: string, label: string }[] = [
   { href: "/", label: "الرئيسية" },
@@ -91,7 +90,7 @@ export function BreadcrumbResponsive({ className, textColor }: { className?: str
                       <div className="group">
                         <div className="w-full flex flex-col justify-between">
                           <Link prefetch={false} href={"/"} className="flex items-center gap-2 h-10 justify-between">
-                            {items.slice(0, 1).map(r => r.label)}
+                            {items.slice(0, 1).map((r, i) => <span key={i}>r.label</span>)}
                             <ChevronLeft />
                           </Link>
                           {items.slice(1).map((item, i) => (

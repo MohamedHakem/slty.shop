@@ -1,5 +1,4 @@
 import { auth } from "@/auth";
-import { Entity } from "@prisma/client";
 
 export const currentUser = async () => {
   const session = await auth();
@@ -18,6 +17,5 @@ export const currentActiveRole = async () => {
 
 export const currentEntity = async () => {
   const session = await auth();
-  // const { createdAt, updatedAt, ...rest } = session?.user.entity as Entity
   return session?.user.entity;
 };

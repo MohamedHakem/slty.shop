@@ -2,7 +2,6 @@ import { slowFetch } from "@/data/slow-fetch"
 
 export const ItemDesc = async ({ desc }: { desc: string }) => {
   const data = await slowFetch(0)
-  console.log("🚀 ~ ItemDetails ~ data.description: ", data.description)
 
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 w-full border rounded-xl">

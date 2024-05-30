@@ -2,7 +2,7 @@ import { slowFetch } from "@/data/slow-fetch"
 
 export const ItemHeader = async ({ item }: { item: { name: string, price: number } }) => {
   const data = await slowFetch(0)
-  console.log("🚀 ~ ItemHeader ~ data.name:", data.name)
+  // console.log("🚀 ~ ItemHeader ~ data.name:", data.name)
 
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 border rounded-xl">

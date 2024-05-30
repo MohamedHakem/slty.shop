@@ -8,7 +8,6 @@ type ItemCarouselType = { src: string; alt: string }[]
 
 export const ItemCarousel = ({ images }: { images: ItemCarouselType }) => {
   // const data = await slowFetch()
-  // console.log("🚀 ~ ItemCarousel ~ data:", data)
 
   return (
     <div className="flex flex-col items-center h-auto relative">

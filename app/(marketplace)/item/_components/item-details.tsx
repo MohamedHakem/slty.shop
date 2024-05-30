@@ -8,7 +8,7 @@ export const ItemDetails = async ({ details }: { details: { detail1: string, det
   // console.log("🚀 ~ ItemCarousel ~ product:", product)
 
   const data = await slowFetch(0)
-  console.log("🚀 ~ ItemDetails ~ data.discount: ", data.discount)
+  // console.log("🚀 ~ ItemDetails ~ data.discount: ", data.discount)
 
   return (
     <div className="flex flex-col gap-2 p-3 md:p-4 border rounded-xl bg-gray-50">
