@@ -4,6 +4,8 @@ import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 const font = Rubik({ weight: ["400", "500", "600", "700"], subsets: ["arabic"] })
 
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600
+export const fetchCache = 'default-cache'
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -28,10 +32,8 @@ export default async function RootLayout({
       <html lang={lang} dir={dir} suppressHydrationWarning={true}>
         <body className={font.className}>
           <Toaster />
-          {/* <main className="w-full max-w-6xl min-h-screen mx-auto border-x border-primaryBorder flex flex-col relative">
-            <Nav /> */}
           {children}
-          {/* </main> */}
+          <SpeedInsights />
         </body>
       </html>
     </SessionProvider>
