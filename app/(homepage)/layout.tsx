@@ -1,4 +1,4 @@
-import { BottomNav } from "@/components/navigation/bottom-nav";
+// import { BottomNav } from "@/components/navigation/bottom-nav";
 import { Footer } from "@/components/navigation/footer";
 import { Nav } from "@/components/navigation/nav";
 

@@ -3,7 +3,7 @@ import { CategorySection } from "../(marketplace)/_components/category-section";
 
 export const dynamic = "force-static";
 // export const revalidate = 3600
-export default async function Home() {
+export default function Home() {
 
   return (
     <div className="flex flex-col items-center px-4">

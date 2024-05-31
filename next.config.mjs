@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    staleTimes: {
-      dynamic: 30,
-      static: 180,
-    },
-  },
+  // experimental: {
+  //   staleTimes: {
+  //     dynamic: 30,
+  //     static: 180,
+  //   },
+  // },
   images: {
     remotePatterns: [
       {
@@ -35,7 +35,6 @@ const nextConfig = {
       },
     ];
   },
-  // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
 
