@@ -91,7 +91,7 @@ export const AddNewItemMultiStep = () => {
         setStep(1)
       )
     }
-  }, [step, setCategory])
+  }, [step, setCategory, category])
 
   const handleBack = () => setStep(step < 2 ? step : step - 1)
 

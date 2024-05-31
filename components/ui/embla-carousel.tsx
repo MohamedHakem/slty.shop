@@ -1,13 +1,20 @@
 "use client"
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { EmblaOptionsType } from 'embla-carousel'
-import useEmblaCarousel from 'embla-carousel-react'
+// import { EmblaOptionsType } from 'embla-carousel'
+// import useEmblaCarousel from 'embla-carousel-react'
 import { Thumb } from './embla-carousel-thumbs-btn'
+// import { EmblaOptionsType } from 'embla-carousel-react';
+// import EmblaOptionsType from "embla-carousel-react"
+
+import useEmblaCarousel from "embla-carousel-react";
+
+type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+type CarouselOptions = UseCarouselParameters[0];
 
 type PropType = {
   slides: number[]
-  options?: EmblaOptionsType
+  options?: CarouselOptions
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
