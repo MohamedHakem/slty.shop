@@ -178,16 +178,6 @@ export const EntityForm = ({ entityType, handleContinue, handleBack }: { entityT
                       </div>
                     </FormControl>
                     <FormMessage />
-                    {/* <Button
-                      size="sm"
-                      variant="link"
-                      asChild
-                      className="px-0 font-normal !mt-0 w-full justify-end"
-                    >
-                      <Link href="/reset" className="font-normal">
-                        نسيت كلمة السر؟
-                      </Link>
-                    </Button> */}
                   </FormItem>
                 )}
               />

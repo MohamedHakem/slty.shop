@@ -17,7 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { CardWrapper } from "@/components/auth/card-wrapper"
+import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
@@ -27,9 +27,10 @@ import { LoadingButton } from "../ui/loading-button";
 export const OnboardingForm = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
-    ? "Email already in use with different provider!"
-    : "";
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provider!"
+      : "";
 
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -38,7 +39,7 @@ export const OnboardingForm = () => {
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
-    defaultValues: { email: "", password: "" }
+    defaultValues: { email: "", password: "" },
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
@@ -118,16 +119,11 @@ export const OnboardingForm = () => {
                             type="email"
                             placeholder="البريد الالكتروني"
                             id="floating-input-email"
-                            className="peer h-[54px] p-4 block w-full placeholder:text-transparent disabled:opacity-50 disabled:pointer-events-none
-                            focus:pt-7 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:pt-6 autofill:pb-2">
-                          </Input>
+                            className="peer block h-[54px] w-full p-4 placeholder:text-transparent autofill:pb-2 autofill:pt-6 focus:pb-2 focus:pt-7 disabled:pointer-events-none disabled:opacity-50 [&:not(:placeholder-shown)]:pb-2 [&:not(:placeholder-shown)]:pt-6"
+                          ></Input>
                           <label
                             htmlFor="floating-input-email"
-                            className="absolute top-0 start-0 p-4 text-sm truncate pointer-events-none transition ease-in-out duration-100 
-                            peer-disabled:opacity-50 peer-disabled:pointer-events-none peer-focus:pt-[10px]
-                            peer-focus:text-xs peer-focus:-translate-y-1 peer-focus:text-gray-500 peer-[:not(:placeholder-shown)]:text-xs 
-                            peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:text-gray-400
-                            peer-[:not(:placeholder-shown)]:pt-[10px]"
+                            className="pointer-events-none absolute start-0 top-0 truncate p-4 text-sm transition duration-100 ease-in-out peer-focus:-translate-y-1 peer-focus:pt-[10px] peer-focus:text-xs peer-focus:text-gray-500 peer-disabled:pointer-events-none peer-disabled:opacity-50 peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:pt-[10px] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-400"
                           >
                             البريد الالكتروني
                           </label>
@@ -151,16 +147,11 @@ export const OnboardingForm = () => {
                             type="password"
                             placeholder="كلمة السر"
                             id="floating-input-password"
-                            className="peer h-[54px] p-4 block w-full placeholder:text-transparent disabled:opacity-50 disabled:pointer-events-none
-                            focus:pt-7 focus:pb-2 [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:pt-6 autofill:pb-2">
-                          </Input>
+                            className="peer block h-[54px] w-full p-4 placeholder:text-transparent autofill:pb-2 autofill:pt-6 focus:pb-2 focus:pt-7 disabled:pointer-events-none disabled:opacity-50 [&:not(:placeholder-shown)]:pb-2 [&:not(:placeholder-shown)]:pt-6"
+                          ></Input>
                           <label
                             htmlFor="floating-input-password"
-                            className="absolute top-0 start-0 p-4 text-sm truncate pointer-events-none transition ease-in-out duration-100 
-                            peer-disabled:opacity-50 peer-disabled:pointer-events-none peer-focus:pt-[10px]
-                            peer-focus:text-xs peer-focus:-translate-y-1 peer-focus:text-gray-500 peer-[:not(:placeholder-shown)]:text-xs 
-                            peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:text-gray-400
-                            peer-[:not(:placeholder-shown)]:pt-[10px]"
+                            className="pointer-events-none absolute start-0 top-0 truncate p-4 text-sm transition duration-100 ease-in-out peer-focus:-translate-y-1 peer-focus:pt-[10px] peer-focus:text-xs peer-focus:text-gray-500 peer-disabled:pointer-events-none peer-disabled:opacity-50 peer-[:not(:placeholder-shown)]:-translate-y-1 peer-[:not(:placeholder-shown)]:pt-[10px] peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-400"
                           >
                             كلمة السر
                           </label>
@@ -171,16 +162,19 @@ export const OnboardingForm = () => {
                         size="sm"
                         variant="link"
                         asChild
-                        className="px-0 font-normal !mt-0 w-full justify-end"
+                        className="!mt-0 w-full justify-end px-0 font-normal"
                       >
-                        <Link href="/reset" className="font-normal">
+                        <Link
+                          prefetch={false}
+                          href="/reset"
+                          className="font-normal"
+                        >
                           نسيت كلمة السر؟
                         </Link>
                       </Button>
                     </FormItem>
                   )}
                 />
-
               </>
             )}
           </div>
