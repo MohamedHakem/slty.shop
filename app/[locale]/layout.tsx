@@ -5,7 +5,7 @@ import { auth } from '@/auth'
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { CSPostHogProvider } from "./_analytics/provider";
+import { CSPostHogProvider } from "../_analytics/provider";
 
 
 const font = Rubik({ weight: ["400", "500", "600", "700"], subsets: ["arabic"] })

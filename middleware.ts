@@ -1,56 +1,14 @@
-import NextAuth from "next-auth";
+import { chain } from "@/middlewares/chain";
+import { withAuthMiddleware } from "@/middlewares/withAuthMiddleware";
+import { withI18nMiddleware } from "@/middlewares/withI18nMiddleware";
+import { withRateLimitMiddleware } from "@/middlewares/withRateLimitMiddleware";
 
-import authConfig from "@/auth.config";
-import {
-  DEFAULT_LOGIN_REDIRECT,
-  apiAuthPrefix,
-  authRoutes,
-  publicRoutes,
-} from "@/routes";
+export default chain([
+  withRateLimitMiddleware,
+  withI18nMiddleware,
+  withAuthMiddleware,
+]);
 
-const { auth } = NextAuth(authConfig);
-
-export default auth((req) => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.map((r) => nextUrl.pathname.startsWith(r));
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-
-  if (!isLoggedIn && nextUrl.pathname === "/dashboard") {
-    console.log(
-      "(middleware) not LoggedIn to /onboarding or /dashboard. Redirecting to login...",
-    );
-    return Response.redirect(new URL(`/login`, nextUrl));
-  }
-
-  if (isApiAuthRoute) {
-    return;
-  }
-
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-    }
-    return;
-  }
-
-  if (!isLoggedIn && !isPublicRoute) {
-    let callbackUrl = nextUrl.pathname;
-    if (nextUrl.search) {
-      callbackUrl += nextUrl.search;
-    }
-
-    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
-    return Response.redirect(
-      new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl),
-    );
-  }
-
-  return;
-});
-
-// Optionally, don't invoke Middleware on some paths
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

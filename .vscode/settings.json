@@ -2,5 +2,13 @@
   "WillLuke.nextjs.addTypesOnSave": true,
   "WillLuke.nextjs.hasPrompted": true,
   "IDX.aI.enableInlineCompletion": true,
-  "IDX.aI.enableCodebaseIndexing": true
+  "IDX.aI.enableCodebaseIndexing": true,
+  "cSpell.words": [
+    "formatjs",
+    "localematcher",
+    "NEXTAUTH",
+    "Posthog",
+    "ratelimit",
+    "upstash"
+  ]
 }

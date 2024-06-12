@@ -6,6 +6,7 @@
 export const publicRoutes = [
   "/new-verification",
   "/category/*",
+  "/item/*",
   "/"
 ];
 
