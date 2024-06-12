@@ -31,13 +31,14 @@ export function withAuthMiddleware(
 
     const isAuthRoute = authRoutes.includes(normalizedPathname);
     const isApiAuthRoute = normalizedPathname.startsWith(apiAuthPrefix);
+    const isPosthog = nextUrl.pathname.startsWith("/ingest");
 
     console.log("🚀 ~ isLoggedIn:", isLoggedIn);
     console.log("🚀 ~ isPublicRoute:", isPublicRoute);
     console.log("🚀 ~ isAuthRoute:", isAuthRoute);
     console.log("🚀 ~ isApiAuthRoute:", isApiAuthRoute);
 
-    if (isApiAuthRoute) return;
+    if (isApiAuthRoute || isPosthog) return;
 
     if (isAuthRoute) {
       if (isLoggedIn) {
