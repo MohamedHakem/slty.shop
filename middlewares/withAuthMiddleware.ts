@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextFetchEvent, NextRequest } from "next/server";
-import { CustomMiddleware } from "./chain";
+import { CustomMiddleware } from "@/middlewares/chain";
 import {
   DEFAULT_LOGIN_REDIRECT,
   authRoutes,
   publicRoutes,
   apiAuthPrefix,
 } from "@/routes";
+import { auth } from "@/auth";
 
 export function withAuthMiddleware(
   middleware: CustomMiddleware,
@@ -17,7 +18,9 @@ export function withAuthMiddleware(
     response: NextResponse,
   ) => {
     const { nextUrl } = req;
-    const isLoggedIn = !!req.cookies.get("access_token");
+    // const isLoggedIn = !!req.cookies.get("access_token");
+    const isLoggedIn = await auth();
+    console.log("🚀 withAuthMiddleware ~ isLoggedIn: ", isLoggedIn);
 
     // Regex to match language prefixes like /en/, /ar/, etc.
     const langPrefixRegex = /^\/[a-z]{2}\//;
