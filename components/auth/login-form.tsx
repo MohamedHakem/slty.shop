@@ -26,10 +26,7 @@ import { LoadingButton } from "../ui/loading-button";
 // import { Label } from "../ui/label";
 
 export const LoginForm = ({ locale }: { locale?: string }) => {
-  console.log("🚀 ~ LoginForm ~ locale:", locale);
-  const pathname = usePathname();
-  console.log("🚀 ~ LoginForm ~ pathname:", pathname);
-
+  // const pathname = usePathname();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
@@ -168,7 +165,7 @@ export const LoginForm = ({ locale }: { locale?: string }) => {
                           >
                             <Link
                               prefetch={false}
-                              href={`${locale}/reset`}
+                              href={`/${locale}/reset`}
                               className="font-normal"
                             >
                               نسيت كلمة السر؟
