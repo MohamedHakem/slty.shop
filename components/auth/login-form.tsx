@@ -25,11 +25,11 @@ import { login } from "@/actions/auth/login";
 import { LoadingButton } from "../ui/loading-button";
 // import { Label } from "../ui/label";
 
-export const LoginForm = ({locale}: {locale: string}) => {
-  console.log("🚀 ~ LoginForm ~ locale:", locale)
-  const pathname = usePathname() 
-  console.log("🚀 ~ LoginForm ~ pathname:", pathname)
-  
+export const LoginForm = ({ locale }: { locale?: string }) => {
+  console.log("🚀 ~ LoginForm ~ locale:", locale);
+  const pathname = usePathname();
+  console.log("🚀 ~ LoginForm ~ pathname:", pathname);
+
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
