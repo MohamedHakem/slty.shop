@@ -6,8 +6,6 @@ import { useEffect } from 'react'
 
 if (typeof window !== 'undefined') {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-    // api_host: `/ingest`,
-    // api_host: `${process.env.NEXT_PUBLIC_APP_URL}/ingest`,
     api_host: `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/ingest`,
     ui_host: 'https://eu.posthog.com' // replace 'eu.' with 'us.' if you're using the us version
   })
