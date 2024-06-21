@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 
@@ -23,9 +23,13 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/auth/login";
 import { LoadingButton } from "../ui/loading-button";
-import { Label } from "../ui/label";
+// import { Label } from "../ui/label";
 
-export const LoginForm = () => {
+export const LoginForm = ({locale}: {locale: string}) => {
+  console.log("🚀 ~ LoginForm ~ locale:", locale)
+  const pathname = usePathname() 
+  console.log("🚀 ~ LoginForm ~ pathname:", pathname)
+  
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
@@ -164,7 +168,7 @@ export const LoginForm = () => {
                           >
                             <Link
                               prefetch={false}
-                              href="/reset"
+                              href={`${locale}/reset`}
                               className="font-normal"
                             >
                               نسيت كلمة السر؟

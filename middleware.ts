@@ -14,8 +14,8 @@ const ratelimit = new Ratelimit({
 
 export default chain([
   withRateLimitMiddleware(ratelimit),
-  withI18nMiddleware,
   withAuthMiddleware,
+  withI18nMiddleware,
 ]);
 
 export const config = {

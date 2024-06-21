@@ -3,33 +3,39 @@ import type { NextFetchEvent, NextRequest } from "next/server";
 import { i18n } from "@/i18n.config";
 import { CustomMiddleware } from "@/middlewares/chain";
 import { getLocale } from "@/lib/getLocale";
-import { apiAuthPrefix } from "@/routes";
+import { EnhancedNextRequest } from "@/types/enhancedNextRequest";
 
 export function withI18nMiddleware(middleware: CustomMiddleware) {
   return async (
-    request: NextRequest,
+    request: EnhancedNextRequest,
     event: NextFetchEvent,
     response: NextResponse,
   ) => {
     const pathname = request.nextUrl.pathname;
-    const isApiAuthRoute = request.nextUrl.pathname.startsWith(apiAuthPrefix);
-    const isPosthog = request.nextUrl.pathname.startsWith("/ingest");
     const pathnameIsMissingLocale = i18n.locales.every(
       (locale) =>
         !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
     );
 
-    if (pathnameIsMissingLocale && !isApiAuthRoute && !isPosthog) {
+    if (
+      pathnameIsMissingLocale &&
+      !request.isApiAuthRoute &&
+      !request.isPosthog
+    ) {
       const locale = getLocale(request);
-      console.log("🚀 ~ withI18nMiddleware ~ locale:", locale)
-      return NextResponse.redirect(
-        new URL(
-          `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-          request.url,
-        ),
+      const { nextUrl } = request;
+
+      console.log("🚀 ~ [I18nMiddleware] ~ .nextUrl:", pathname,", .search: ", request.nextUrl.search);
+      const newUrl = new URL(
+        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}${nextUrl.search}`,
+        request.url,
       );
+
+      console.log("🚀 ~ [I18nMiddleware] ~ redirecting to:", newUrl.href);
+      return NextResponse.redirect(newUrl);
     }
 
+    console.log("🚀 ~ [I18nMiddleware] ~ done with I18nMiddleware");
     return middleware(request, event, response);
   };
 }

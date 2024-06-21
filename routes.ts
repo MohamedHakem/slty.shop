@@ -23,6 +23,18 @@ export const authRoutes = [
   "/new-password"
 ];
 
+
+/**
+ * An array of routes that requires authentication
+ * These routes will redirect non-logged in users to /settings
+ * @type {string[]}
+ */
+export const requiresAuthRoutes  = [
+  "/dashboard",
+  "/onboarding",
+];
+
+
 /**
  * The prefix for API authentication routes
  * Routes that start with this prefix are used for API authentication purposes

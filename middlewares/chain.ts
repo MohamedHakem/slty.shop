@@ -1,16 +1,15 @@
 import { NextMiddlewareResult } from "next/dist/server/web/types";
 import { NextResponse } from "next/server";
 import type { NextFetchEvent, NextRequest } from "next/server";
+import { EnhancedNextRequest } from "@/types/enhancedNextRequest";
 
 export type CustomMiddleware = (
-  request: NextRequest,
+  request: EnhancedNextRequest,
   event: NextFetchEvent,
   response: NextResponse,
 ) => NextMiddlewareResult | Promise<NextMiddlewareResult>;
 
-type MiddlewareFactory = (
-  middleware: CustomMiddleware,
-) => CustomMiddleware;
+type MiddlewareFactory = (middleware: CustomMiddleware) => CustomMiddleware;
 
 export function chain(
   functions: MiddlewareFactory[],
@@ -24,7 +23,7 @@ export function chain(
   }
 
   return (
-    request: NextRequest,
+    request: EnhancedNextRequest,
     event: NextFetchEvent,
     response: NextResponse,
   ) => {

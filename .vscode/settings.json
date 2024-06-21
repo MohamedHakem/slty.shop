@@ -9,6 +9,7 @@
     "NEXTAUTH",
     "Posthog",
     "ratelimit",
+    "ratelimited",
     "upstash"
   ]
 }
