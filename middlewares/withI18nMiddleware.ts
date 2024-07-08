@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextFetchEvent, NextRequest } from "next/server";
+import type { NextFetchEvent } from "next/server";
 import { i18n } from "@/i18n.config";
 import { CustomMiddleware } from "@/middlewares/chain";
 import { getLocale } from "@/lib/getLocale";
@@ -25,7 +25,6 @@ export function withI18nMiddleware(middleware: CustomMiddleware) {
       const locale = getLocale(request);
       const { nextUrl } = request;
 
-      console.log("🚀 ~ [I18nMiddleware] ~ .nextUrl:", pathname,", .search: ", request.nextUrl.search);
       const newUrl = new URL(
         `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}${nextUrl.search.includes("password") ? "" : nextUrl.search}`,
         request.url,
@@ -35,7 +34,7 @@ export function withI18nMiddleware(middleware: CustomMiddleware) {
       return NextResponse.redirect(newUrl);
     }
 
-    console.log("🚀 ~ [I18nMiddleware] ~ done with I18nMiddleware");
+    console.log("🚀 ~ [I18nMiddleware] ~ done");
     return middleware(request, event, response);
   };
 }

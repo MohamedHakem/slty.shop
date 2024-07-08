@@ -51,7 +51,7 @@ export function withAuthMiddleware(
       return NextResponse.redirect(url);
     }
 
-    console.log("🚀 ~ [AuthMiddleware] ~ done with authMiddleware");
+    console.log("🚀 ~ [AuthMiddleware] ~ done");
     return middleware(request, event, response);
   };
 }

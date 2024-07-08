@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextFetchEvent, NextRequest } from "next/server";
+import type { NextFetchEvent } from "next/server";
 import { CustomMiddleware } from "@/middlewares/chain";
 import { getLocale } from "@/lib/getLocale";
 import { getMessageForRateLimited } from "@/lib/getMessageForRateLimited";
@@ -19,7 +19,7 @@ export function withRateLimitMiddleware(ratelimit: Ratelimit) {
       enhanceRequest(request)
 
       if (process.env.NODE_ENV !== "production") {
-        console.log("🚀 ~ [RateLimitMiddleware] Skipping rate limiting in dev mode.");
+        console.log("🚀 ~ [RateLimitMiddleware] Skip (dev mode)");
         return middleware(request, event, response);
       }
 
