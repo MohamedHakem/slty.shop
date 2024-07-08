@@ -6,6 +6,9 @@ const nextConfig = {
   //     static: 180,
   //   },
   // },
+  experimental: {
+    serverActions: { allowedOrigins: ["localhost:3000", "*.app.github.dev/"] },
+  },
   images: {
     remotePatterns: [
       {

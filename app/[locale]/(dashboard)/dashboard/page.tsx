@@ -1,40 +1,22 @@
-import Link from "next/link"
+import Link from "next/link";
 import {
   Activity,
   ArrowUpRight,
-  CircleUser,
   CreditCard,
   DollarSign,
-  Menu,
-  Package2,
-  Search,
   Users,
-} from "lucide-react"
+} from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuLabel,
-//   DropdownMenuSeparator,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu"
-// import { Input } from "@/components/ui/input"
-// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -42,11 +24,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 
 export default function DashboardPage() {
   return (
-    <div className="flex min-h-[calc(100vh-60px)] h-full w-full flex-col bg-muted/70">
+    <div className="flex h-full min-h-[calc(100vh-60px)] w-full flex-col bg-muted/70">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <Card>
@@ -325,5 +307,5 @@ export default function DashboardPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

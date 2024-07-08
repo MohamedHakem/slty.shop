@@ -4,7 +4,7 @@ import { DashboardSidebar } from "./_components/dashboard-sidebar"
 import { DashboardMobileSidebar } from './_components/dashboard-mobile-sidebar'
 import { UserButton } from '@/components/auth/user-button'
 
-export default async function Dashboardlayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <div dir="rtl" className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <DashboardSidebar />

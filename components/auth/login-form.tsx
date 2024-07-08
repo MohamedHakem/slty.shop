@@ -56,6 +56,7 @@ export const LoginForm = ({ locale }: { locale?: string }) => {
             setError(data.error);
           }
 
+          // TODO: remove the success state, user should login immedtiately on success (not "notified" for a correct credentials)
           if (data?.success) {
             form.reset();
             setSuccess(data.success);

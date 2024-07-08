@@ -27,7 +27,7 @@ export function withI18nMiddleware(middleware: CustomMiddleware) {
 
       console.log("🚀 ~ [I18nMiddleware] ~ .nextUrl:", pathname,", .search: ", request.nextUrl.search);
       const newUrl = new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}${nextUrl.search}`,
+        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}${nextUrl.search.includes("password") ? "" : nextUrl.search}`,
         request.url,
       );
 

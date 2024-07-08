@@ -8,7 +8,6 @@ import {
   requiresAuthRoutes,
 } from "@/routes";
 import { auth } from "@/auth";
-import { i18n } from "@/i18n.config";
 
 export function withAuthMiddleware(
   middleware: CustomMiddleware,
@@ -19,12 +18,12 @@ export function withAuthMiddleware(
     response: NextResponse,
   ) => {
     if (request.isApiAuthRoute || request.isPosthog) {
-      console.log("🚀 ~ [AuthMiddleware] ~ /api or /posthog, req: ", request.url);
       return middleware(request, event, response);
     }
 
     const { nextUrl } = request;
     const isLoggedIn = await auth();
+    const userHasEntity = isLoggedIn?.user?.entity; // user onboarded yet?
     const normalizedPathname = nextUrl.pathname.replace(/^\/[a-z]{2}\//, "/");
     const isAuthRoute = authRoutes.includes(normalizedPathname);
     const isRouteRequiresAuth = requiresAuthRoutes.some((route) =>
@@ -33,6 +32,10 @@ export function withAuthMiddleware(
 
     if (isAuthRoute && isLoggedIn) {
       return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+    }
+
+    if (isLoggedIn && !userHasEntity && nextUrl.pathname.includes("/dashboard")) {
+      return NextResponse.redirect(new URL("/onboarding", nextUrl));
     }
 
     if (isRouteRequiresAuth && !isLoggedIn) {
