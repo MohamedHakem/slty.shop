@@ -98,7 +98,7 @@ export const ClaimShopName = () => {
               احجز اسم متجرك قبل فوات الأوان
               {" "}<span className="text-2xl">🚀</span>{" "}
             </p>
-            <p className="block md:hidden">
+            <p className="block md:hidden text-sm">
               دومين مجاني
               {" "}<span className="text-2xl">🚀</span>{" "}
               احجزه قبل فوات الأوان!</p>

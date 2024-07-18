@@ -59,7 +59,7 @@ export const Header = ({ translate }: any) => {
       // className="bg-gradient-to-b from-primary/10 via-primary/50 to-primary/90 py-4 
       // bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
     >
-      <p className={cn("text-[140px] md:text-[320px] font-black md:tracking-[2px] md:h-[400px]", AlmaraiFont.className)}>سلتي</p>
+      <p className={cn("text-[120px] md:text-[320px] font-black md:tracking-[2px] md:h-[400px]", AlmaraiFont.className)}>سلتي</p>
     </motion.h1>
   );
 };
