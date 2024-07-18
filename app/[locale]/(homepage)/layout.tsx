@@ -7,10 +7,10 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="w-full min-h-screen mx-auto flex flex-col relative">
       <Nav />
-      <div className="w-full max-w-6xl mx-auto flex flex-col relative">
+      <main className="w-full mx-auto flex flex-col relative">
       {children}
       {/* <BottomNav /> */}
-      </div>
+      </main>
       <Footer />
     </main>
   );

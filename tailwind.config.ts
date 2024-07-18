@@ -7,10 +7,7 @@ const {
 const config = {
   mode: "jit",
   darkMode: ["class"],
-  content: [
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-  ],
+  content: ["./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -58,6 +55,8 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        beige: "#eddccb",
+        black: "#333A3F",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -102,9 +101,9 @@ export default config;
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
   );
- 
+
   addBase({
     ":root": newVars,
   });

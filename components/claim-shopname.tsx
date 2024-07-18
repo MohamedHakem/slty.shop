@@ -1,10 +1,66 @@
+"use client"
+
+import { ChangeEvent, useRef, useState } from "react"
+import { FcCheckmark } from "react-icons/fc"
+
 export const ClaimShopName = () => {
-  const dir = "rtl"
+  const inputRef = useRef(null);
+  const [shopName, setShopName] = useState("")
+  console.log("🚀 ~ ClaimShopName ~ shopName:", shopName)
+  // const [shopNameError, setShopNameError] = useState(false)
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(false)
+
+  const handleShopName = (e: ChangeEvent<HTMLInputElement>) => {
+    setShopName(e.target.value)
+    console.log("🚀 ~ ClaimShopName ~ handleShopName:", e.target.value)
+    console.log("🚀 ~ ClaimShopName ~ event.target width:", e.target)
+    // setShopNameError(false)
+    // setLoading(true)
+    // setError(false)
+  }
+
+
+  // const getInputWidth = () => {
+  //   if (inputRef.current) {
+  //     const inputText = inputRef.current.value || 'myshop'; // Fallback to placeholder if input is empty
+  //     const textWidth = getTextWidth(inputText); // Calculate width of input text
+  //     return `${textWidth}px`; // Return width as a string
+  //   }
+  //   return 'auto'; // Default width if inputRef is not ready
+  // };
+
+  // const getTextWidth = (text: any) => {
+  //   const canvas = document.createElement('canvas'); // Create a canvas element
+  //   const context = canvas.getContext('2d'); // Get 2D rendering context
+  //   if (context) {
+  //     context.font = getComputedStyle(inputRef.current).font; // Get font styles from input
+  //     const metrics = context.measureText(text); // Measure text width
+  //     return metrics.width + 8; // Add some padding for better visual appearance
+  //   }
+  //   return 0; // Default width if context is not ready
+  // };
+
+
 
   return (
-    <div className="text-center p-8 items-center border-y w-full">
-      <div className="flex flex-col h-full">
-        <div className="max-w-lg w-full p-3 mx-auto flex items-center gap-x-2 h-16 justify-between bg-white rounded-[64px] border border-primaryBorder focus-within:border-gray-gray5 focus-within:shadow-focus-border transition-all">
+    <div className="text-center p-2 items-center w-full">
+      <div className="flex flex-col max-w-lg w-full mx-auto items-center h-full gap-2">
+        {/* <div className="flex gap-4 h-6 mt-2 text-center relative">
+          <div className="flex gap-3 text-center justify-center items-center">
+            <span className="flex rounded-full w-[20px] h-[20px] bg-green-500 items-center justify-center">
+              <FcCheckmark color="#ffffff" size={12} strokeWidth={5} />
+            </span> 
+             <p dir={"rtl"} className="">احجز اسم متجرك قبل فوات الأوان!</p> 
+              <div className="flex gap-2">
+              <span className="flex rounded-full w-[20px] h-[20px] bg-green-500 items-center justify-center">
+                <FcCheckmark color="#ffffff" size={12} strokeWidth={5} />
+              </span>
+              <p>الدومين مجاني</p>
+            </div>
+          </div>
+        </div> */}
+        <div dir={"ltr"} className="max-w-lg w-full p-3 mx-auto flex items-center gap-x-2 h-16 justify-between bg-white rounded-[64px] border border-primaryBorder focus-within:border-gray-gray5 focus-within:shadow-focus-border transition-all">
           <div className="flex items-center gap-x-2">
             <div className="bg-primary p-[10px] rounded-full">
               <svg width="26" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="-169.66 -51.35 784.52 661.48">
@@ -15,10 +71,17 @@ export const ClaimShopName = () => {
               </svg>
             </div>
             <div className="flex items-center">
-              <span className="lg:text-2xl text-lg ">slty.shop/</span>
-              <div className="relative">
-                <input placeholder="username" className="font-normal lg:text-2xl w-full outline-none text-lg placeholder:text-gray-gray3 placeholder:font-normal text-primary" value=""></input>
-              </div>
+              {/* <div className="relative"> */}
+              <input
+                placeholder="myShop"
+                value={shopName}
+                onChange={(e) => handleShopName(e)}
+                // style={{ width: getInputWidth(), minWidth: '6ch' }}
+                // ref={inputRef}
+                className="flex-1 font-normal lg:text-2xl w-[92px] outline-none text-lg placeholder:text-gray-gray3 placeholder:font-normal text-primary"
+              />
+              {/* </div> */}
+              <span className="lg:text-2xl text-lg">.slty.shop</span>
             </div>
           </div>
           <div className="bg-primary rounded-full">
@@ -29,8 +92,17 @@ export const ClaimShopName = () => {
             </button>
           </div>
         </div>
-        <div className="h-6 mt-2 text-center">
-          <p dir={dir} className="">احجز اسم متجرك قبل فوات الأوان!</p>
+        <div className="flex gap-4 h-6 mt-1 text-center relative">
+          <div className="flex gap-2 text-center text-lg font-medium justify-center items-center">
+            <p className="hidden md:block">
+              احجز اسم متجرك قبل فوات الأوان
+              {" "}<span className="text-2xl">🚀</span>{" "}
+            </p>
+            <p className="block md:hidden">
+              دومين مجاني
+              {" "}<span className="text-2xl">🚀</span>{" "}
+              احجزه قبل فوات الأوان!</p>
+          </div>
         </div>
       </div>
     </div>)

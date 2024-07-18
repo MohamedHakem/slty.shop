@@ -7,6 +7,7 @@ const domain = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL;
 console.log("🚀 ~ domain:", domain);
 
 export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
+  console.log("🚀 ~ inside sendTwoFactorTokenEmail");
   await resend.emails.send({
     from: "mail@auth-masterclass-tutorial.com",
     to: email,
@@ -16,7 +17,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-  console.log("🚀 ~ sendPasswordResetEmail ~ email:", email)
+  console.log("🚀 ~ inside sendPasswordResetEmail ~ email:", email)
   const resetLink = `${domain}/auth/new-password?token=${token}`;
 
   await resend.emails.send({
@@ -28,8 +29,8 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
+  console.log("🚀 ~ inside sendVerificationEmail");
   const confirmLink = `${domain}/new-verification?token=${token}`;
-  console.log("inside sendVerificationEmail");
   const res = await resend.emails.send({
     from: "Slty@slty.shop",
     to: email,

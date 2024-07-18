@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Noto_Sans_Arabic, Rubik } from "next/font/google";
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
 import "./globals.css";
@@ -9,6 +9,7 @@ import { CSPostHogProvider } from "@/app/_analytics/provider";
 
 
 const font = Rubik({ weight: ["400", "500", "600", "700"], subsets: ["arabic"] })
+// const font = Noto_Sans_Arabic({ weight: ["400", "500", "600", "700"], subsets: ["arabic"] })
 
 export const metadata: Metadata = {
   title: "Slty.shop",
