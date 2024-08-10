@@ -46,7 +46,7 @@ export const Header = ({ translate }: any) => {
     // >
     //   <p className={cn("text-black/10 text-[320px] font-bold tracking-[2px]", AlmaraiFont.className)}>سلتي</p>
     // </motion.div>
-    <motion.h1
+    <motion.h2
       // initial={{ opacity: 0.7, y: 50 }}
       // whileInView={{ opacity: 1, y: 50 }}
       // transition={{
@@ -60,6 +60,6 @@ export const Header = ({ translate }: any) => {
       // bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
     >
       <p className={cn("text-[120px] md:text-[320px] font-black md:tracking-[2px] md:h-[400px]", AlmaraiFont.className)}>سلتي</p>
-    </motion.h1>
+    </motion.h2>
   );
 };

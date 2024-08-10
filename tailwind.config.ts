@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      scale: {
+        '-1': '-1'
+      },
       colors: {
         border: "hsl(var(--border))",
         primaryBorder: "hsl(var(--primary-border))",
@@ -57,6 +60,8 @@ const config = {
         },
         beige: "#eddccb",
         black: "#333A3F",
+        blacker: "#1d1d1f",
+        grayBg: "#262a2e",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,10 +82,34 @@ const config = {
             transform: "translateX(100%)",
           },
         },
+        moveUpDown: {
+          "0%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            transform: "translateY(0)",
+          },
+        },
+        moveDownUp: {
+          "0%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-30px)",
+          },
+          "100%": {
+            transform: "translateY(0)",
+          },
+        },
       }),
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "move-up-down": "moveUpDown 4s ease-in-out infinite",
+        "move-down-up": "moveDownUp 4s ease-in-out infinite",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
