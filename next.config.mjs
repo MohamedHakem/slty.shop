@@ -1,3 +1,4 @@
+import { withNextVideo } from "next-video/process";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // experimental: {
@@ -41,7 +42,7 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
 };
 
-export default nextConfig;
+export default withNextVideo(nextConfig);
 
 // import MillionLint from '@million/lint';
 // /** @type {import('next').NextConfig} */

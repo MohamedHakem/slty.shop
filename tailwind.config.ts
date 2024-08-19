@@ -59,8 +59,8 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         beige: "#eddccb",
-        black: "#333A3F",
-        blacker: "#1d1d1f",
+        lightBlack: "#333A3F",
+        black: "#1d1d1f",
         grayBg: "#262a2e",
       },
       borderRadius: {
