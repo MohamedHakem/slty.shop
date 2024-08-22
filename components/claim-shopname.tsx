@@ -92,15 +92,15 @@ export const ClaimShopName = () => {
             </button>
           </div>
         </div>
-        <div className="flex gap-4 h-6 mt-1 text-center relative">
-          <div className="flex gap-2 text-center text-lg font-medium justify-center items-center">
+        <div className="flex gap-4 h-5 mt-1 text-center relative">
+          <div className="flex gap-2 text-center text-md font-medium justify-center items-center">
             <p className="hidden md:block">
               احجز اسم متجرك قبل فوات الأوان
-              {" "}<span className="text-2xl">🚀</span>{" "}
+              {" "}<span className="text-xl">🚀</span>{" "}
             </p>
             <p className="block md:hidden text-sm">
               دومين مجاني
-              {" "}<span className="text-2xl">🚀</span>{" "}
+              {" "}<span className="text-base">🚀</span>{" "}
               احجزه قبل فوات الأوان!</p>
           </div>
         </div>

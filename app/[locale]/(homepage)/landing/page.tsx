@@ -11,7 +11,6 @@ export default function Home() {
       <Hero1 />
       <HowToUse />
       <FeatureShowcase />
-
       {/* Traditional Ecomm VS Slty platform (COST, TIME, FEATURES) 
       (check shipfa.st, instatus.com, others) short similar to shipfast, not long so the features can be in the view */}
       {/* Features */}
