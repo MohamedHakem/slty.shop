@@ -1,7 +1,6 @@
 import { ClaimShopName } from "@/components/claim-shopname";
 import LandingTitle from "@/components/landing/title";
 import LandingSubtitle from "@/components/landing/subtitle";
-// import HeroArtwork1 from "@/components/landing/hero-artwork-1";
 import HeroArtwork2 from "@/components/landing/hero-artwork-2";
 
 export default function Hero1() {
@@ -17,7 +16,6 @@ export default function Hero1() {
         {/* <Lamp> <FadedBackgroundLogo /> </Lamp> */}
         {/* <FadedBackgroundLogo /> */}
         {/* a container section with 2 images floating one on top of the other */}
-        {/* <HeroArtwork1 /> */}
     </div>
   )
 }
