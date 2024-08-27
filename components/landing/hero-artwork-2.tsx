@@ -3,7 +3,7 @@ import SltyHeroPlaceholder2 from '@/public/assets/landing-page-assets/slty-hero-
 export default function HeroArtwork2() {
   return (
     <div className="w-full">
-      <div className="max-w-3xl m-auto relative flex items-center justify-center overflow-hidden md:rounded-[4rem]">
+      <div className="max-w-3xl m-auto relative flex items-center justify-center overflow-hidden md:rounded-[3rem]">
         <video
           // src='https://res.cloudinary.com/dpieq06nn/video/upload/f_webm,vc_vp9,q_auto/v1724305482/Slty-landingpage/itkj0fp0cxlx0k72eax3' 
           poster={SltyHeroPlaceholder2.src}

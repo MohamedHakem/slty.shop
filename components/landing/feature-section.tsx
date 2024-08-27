@@ -30,7 +30,9 @@ export default function FeatureSection({
             description={feature.description}
             imgSrc={feature.imgSrc}
             bgColorHex={feature.bgColorHex}
-            marginTop={feature.marginTop}
+            artwork={feature.artwork}
+            bgColor1={feature.bgColor1}
+            bgColor2={feature.bgColor2}
             // width={(index % 3 === 2 || (index === features.length - 1 && index % 3 !== 0 && index % 3 !== 1)) ? 1 : 0.5}
             width={(index % 3 === 2 || (index === features.length - 1 && (index % 3 === 2 || (index % 3 === 0 && index === features.length - 1)))) ? 1 : 0.5}
           />
