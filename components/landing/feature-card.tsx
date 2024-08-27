@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import { Almarai } from "next/font/google";
 import React from "react";
+import heatMapPlaceholder from "@/public/assets/landing-page-assets/feat-heatmap-placeholder-1.jpeg"
 // import { cn } from "@/lib/utils";
 // import Balancer from "react-wrap-balancer";
 // import { UnlimitedSubdomains } from "@/components/landing/unlimited-free-subdomains";
@@ -65,7 +66,8 @@ export default function FeatureCard({
         typeof artwork === 'function' ? React.createElement(artwork as React.FC)
           : typeof artwork === 'string' && artwork.includes('video') ?
             <div className="max-w-full relative flex items-center justify-center overflow-hidden">
-              <video className="-mt-[10%]"
+              <video className="-mt-[10%] placeholder:mt-[10%]"  
+                poster={title.includes('الخرائط') ? heatMapPlaceholder.src : undefined}
                 autoPlay={true}
                 loop={true}
                 muted={true}
