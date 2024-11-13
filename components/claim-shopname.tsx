@@ -1,12 +1,12 @@
 "use client"
 
 import { ChangeEvent, useRef, useState } from "react"
-import { FcCheckmark } from "react-icons/fc"
+// import { FcCheckmark } from "react-icons/fc"
 
 export const ClaimShopName = () => {
   const inputRef = useRef(null);
   const [shopName, setShopName] = useState("")
-  console.log("🚀 ~ ClaimShopName ~ shopName:", shopName)
+  // console.log("🚀 ~ ClaimShopName ~ shopName:", shopName)
   // const [shopNameError, setShopNameError] = useState(false)
   // const [loading, setLoading] = useState(false)
   // const [error, setError] = useState(false)

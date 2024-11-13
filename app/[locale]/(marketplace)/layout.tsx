@@ -9,7 +9,8 @@ const MarketplaceLayout = ({ children }: { children: React.ReactNode }) => {
     <main className="w-full min-h-screen mx-auto flex flex-col relative">
       <Nav />
       <div className="max-w-6xl mx-auto flex flex-col relative w-full">
-        <CategoriesNav className="hidden md:block" />
+        {/* <CategoriesNav className="hidden md:block" /> */}
+        <CategoriesNav />
         {children}
         {/* <BottomNav /> */}
       </div>

@@ -19,7 +19,7 @@ export default function FeatureSection({
         <h3 className="text-2xl md:text-3xl text-lightBlack/60 font-semibold text-center md:leading-[2.75rem] md:mt-4">
           {description}
         </h3>
-        : <></>
+        : null
       }
 
       <div className="mx-auto mt-10 grid grid-cols-1 gap-8 md:max-w-full md:grid-cols-2 md:px-6">
